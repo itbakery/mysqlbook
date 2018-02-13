@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Relational Database &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="next" title="Mysql installation" href="installation.html"/>
+        <link rel="prev" title="Welcome to Mysql Tutorial’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Relational Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#relation">คุณสมบัติของความสัมพันธ์ (รีเลชัน) Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key">กุญแจ (key)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attribute">แอททริบิวต์ (Attribute)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#degree">ดีกรี (Degree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cardinality">คาร์ดินัลลิตี้ (Cardinality)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modality">โมเดลลิตี้(Modality)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#entity-relationship-diagram">Entity-Relationship Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ตัวอย่าง</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. ส่วนที่เกี่ยวกับการควบคุมความถูกต้องให้กับข้อมูล</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-manipulation">3. การจัดการกับข้อมูล (Data manipulation)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Mysql installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Relational Database</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/relational.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="relational-database">
+<h1>Relational Database<a class="headerlink" href="#relational-database" title="Permalink to this headline">¶</a></h1>
+<p>การจัดเก็บฐานข้อมูลเชิงสัมพันธ์ ได้เริ่มรู้จักกัน บทความชื่อ A Relational Model of Data for Large
+Shared Data Banks  ของ Dr.Edgar Frank Codd  หรือ Dr. E. F. Codd ซึ่งขณะนั้นเป็นนักวิจัยอยู่ที่บริษัท
+IBM ได้ตีพิมพ์ในวารสาร Association of Computer Machinery (ACM) journal เมื่อเดือนมิถุนายน
+ปี ค.ศ.1970   การสร้างโมเดลเชิงสัมพันธ์ได้ใช้ทฤษฎีทางคณิตศาสตร์เกี่ยวกับเซต (Set) มาอธิบายการทำงาน
+แนวคิดของ Codd นี้ได้ถูกพัฒนาเป็นซอฟต์แวร์ระบบฐานข้อมูลที่ชื่อว่า Oracle จากบริษัท Relational Software
+หรือ บริษัท Oracle ในปัจจุบัน</p>
+<img alt="_images/edgar.png" src="_images/edgar.png" />
+<p>ความหมายของศัพท์ที่เกี่ยวข้อง</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">คำศัพท์</th>
+<th class="head">ความหมาย</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>รีเลชั่น (Relation)               |</td>
+<td>ตาราง (Table) แสดงความจริง ชุดหนึ่ง ที่แทนข้อมูล และไม่สามารถซ้ำกันได           |</td>
+</tr>
+<tr class="row-odd"><td>ทูเพิล  (  Tuple )                |</td>
+<td>ค่าของข้อมูลในแต่ละแถว  (  Row  ) หรือ  เรคคอร์ด ( Record )                     |</td>
+</tr>
+<tr class="row-even"><td>คาร์ดินาลลิตี้   ( Cardinality  ) |</td>
+<td>จำนวนแถวแต่ละข้อมูลในแต่ละรีเลชั่น                                              |</td>
+</tr>
+<tr class="row-odd"><td>แอทริบิวต์  (  Attribute  )</td>
+<td>รายละเอียดของข้อมูลในแต่ละคอลัมน์  รู้จักในรูปของคอลัมน์  (  Column  )          |</td>
+</tr>
+<tr class="row-even"><td>คีย์หลัก   (  Primary  key  )</td>
+<td>แอทริบิวต์ที่มีค่าของข้อมูลเป็นเอกลักษณ์หรือะจะเป็นค่าที่ไม่ซ้ำกันในแต่ละทูเพิล |</td>
+</tr>
+<tr class="row-odd"><td>โดเมน (  Domain  )</td>
+<td>ขอบเขตของค่าของข้อมูลที่ควรจะเป็นในแต่ละแอทริบิวต์                              |</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="relation">
+<h2>คุณสมบัติของความสัมพันธ์ (รีเลชัน) Relation<a class="headerlink" href="#relation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Relation หรือ ตาราง ต้องมีชื่อไม่ซ้ำกัน</li>
+<li>แต่ละฟิลด์จะเก็บประเภทข้อมูลชนิดเดียว</li>
+<li>ข้อมูลในแต่ละ Tuple (row หรือ record) จะต้องไม่ซ้ำกัน อาจมีการเปลี่ยนแปลงได้</li>
+<li>ข้อมูลแต่ละ Tuple แทนความจริง (Fact)</li>
+<li>Column หรือ ฟิลด์ สามารถสลับกันได้</li>
+</ol>
+<p>โมเดลฐานข้อมูลเชิงสัมพันธ์ ผู้ริเริ่มคือ Dr.E.F.Codd โดยกำหนดส่วนประกอบของโมเดลเชิงสัมพันธ์แบ่งเป็น 3 ส่วนได้แก่</p>
+<ol class="arabic simple">
+<li>ส่วนที่เกี่ยวข้องกับโครงสร้างของข้อมูล</li>
+<li>ส่วนที่เกี่ยวกับการควบคุมความถูกต้องให้กับข้อมูล</li>
+<li>ส่วนในการจัดการกับข้อมูล</li>
+</ol>
+<ol class="arabic simple">
+<li>โครงสร้างของข้อมูลเชิงสัมพันธ์ (Relational Data Structure)</li>
+</ol>
+<img alt="_images/struct.jpg" src="_images/struct.jpg" />
+</div>
+<div class="section" id="key">
+<h2>กุญแจ (key)<a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h2>
+<p>กุญแจ หรือ คีย์ (Key) สิ่งที่ใช้กำหนดความเป็นเอกลักษณ์ในความสัมพันธ์</p>
+<p>1. คีย์หลัก (PK: Primary Key) หรือ กุญแจหลัก (PK เป็นคีย์คู่แข่ง candidate key ตัวหนึ่งที่ถูกเลือกขึ้นมาเป็นคีย์หลัก)
+คุณสมบัติของคีย์หลัก คือ มีความเป็นหนึ่งเดียว ค่าของคีย์หลักต้องไม่ซ้ำกันเลย ประกอบด้วยจำนวนแอททริบิวต์น้อยที่สุด
+ที่สามารถเจาะจงทัพเพิลหนึ่งในรีเลชันได้ (PK ห้ามซ้ำ)</p>
+<ol class="arabic simple" start="2">
+<li>คีย์รอง ( Alternate Key หรือ Secondary Key) กุญแจที่ไม่ถูกเลือกให้เป็นกุญแจหลัก</li>
+</ol>
+<p>3. คีย์นอก (FK: Foreign Key) ใช้ในการเชื่อมโยงข้อมูลระหว่างความสัมพันธ์เข้าด้วยกัน FK เป็น primary key
+ใน relation อื่น</p>
+<ol class="arabic simple" start="4">
+<li>คีย์อย่างง่าย (Simple key) ประกอบด้วย attribute เดียว</li>
+</ol>
+<p>5. คีย์ประกอบ (Combine key หรือ Composite key) กุญแจที่ประกอบขึ้นจากแอททริบิวท์มากกว่า 1 แอททริบิวท์
+เมื่อนำแอททริบิวต์ทั้งหมดมาผสมกัน  ทำให้ได้ค่าที่ไม่ซ้ำกันเลย</p>
+<ol class="arabic simple" start="6">
+<li>คีย์คู่แข่ง (Candidate Key) สามารถจะเป็นคู่แข่งซึ่งจะถูกเลือกให้เป็นคีย์หลัก</li>
+</ol>
+<p>7. ซุปเปอร์คีย์ (Super key) กลุ่มของแอททริบิวต์ของรีเลชันที่สามารถเจาะจง (identify) ความเป็นหนึ่งเดียวของ tuple
+ที่แตกต่างจากทัพเพิลอื่นได้  หมายถึง attribute หรือ เซ็ทของ attribute ที่สามารถบ่งบอกว่าแต่ละแถว (Tuple)
+แตกต่างกัน ในทุก ๆ ความสัมพันธ์ จะต้องมีอย่างน้อย หนึ่ง Super key ในเซ็ทของ attributes</p>
+<img alt="_images/mysql-key.jpg" src="_images/mysql-key.jpg" />
+</div>
+<div class="section" id="attribute">
+<h2>แอททริบิวต์ (Attribute)<a class="headerlink" href="#attribute" title="Permalink to this headline">¶</a></h2>
+<p>แอททริบิวต์ (Attribute) หมายถึง แต่ละคอลัมน์ที่อยู่ในรีเลชัน แต่ละแอททริบิวต์จะมีชื่อกำกับแต่ละแอททริบิวต์ในต่ละรีเลชัน</p>
+<img alt="_images/attribute.jpg" src="_images/attribute.jpg" />
+</div>
+<div class="section" id="degree">
+<h2>ดีกรี (Degree)<a class="headerlink" href="#degree" title="Permalink to this headline">¶</a></h2>
+<p>ดีกรี (Degree) หมายถึง  จำนวนแอททิริบิวท์ของแต่ละตาราง(รีเลชัน) หรือ จำนวนแอททิริบิวท์ที่มีอยู่ในแต่ละตาราง(รีเลชัน)</p>
+</div>
+<div class="section" id="cardinality">
+<h2>คาร์ดินัลลิตี้ (Cardinality)<a class="headerlink" href="#cardinality" title="Permalink to this headline">¶</a></h2>
+<p>คาร์ดินัลลิตี้ (Cardinality) หมายถึง การอ้างถึงลักษณะความสัมพันธ์ของข้อมูลของตารางกับอีกตารางหนึ่ง
+Cardinality หมายถึง จำนวนที่มากที่สุดในความสัมพันธ์ อย่างน้อยมีได้ 1 หรือมีได้ไม่จำกัด many</p>
+</div>
+<div class="section" id="modality">
+<h2>โมเดลลิตี้(Modality)<a class="headerlink" href="#modality" title="Permalink to this headline">¶</a></h2>
+<p>โมเดลลิตี้(Modality) หมายถึงจำนวนที่น้อยที่สุดในความสัมพันธ์ มีได้แค่สอง option เท่านั้น คืออย่างน้อยที่สุดเป็น 0 และ อย่างน้อยที่สุดเป็น 1</p>
+</div>
+<div class="section" id="entity-relationship-diagram">
+<h2>Entity-Relationship Diagram<a class="headerlink" href="#entity-relationship-diagram" title="Permalink to this headline">¶</a></h2>
+<p>ในแต่ละความสัมพันธ์ จะต้องระบุจำนวน Cardinality และ Modality คู่กันเพื่อกำหนดจำนวนที่น้อยที่สุดและมากที่สุด</p>
+<img alt="_images/modality3.png" src="_images/modality3.png" />
+<p>ทั้งสองค่าสร้างความเป็นไปได้ดังนี้</p>
+<img alt="_images/modality2.png" src="_images/modality2.png" />
+<p>ลองดูตัวอย่าง ผู้ถือบัตรเครดิต และ บัตรเครดิต ถ้ากำหนดให้ผู้ถือบัตร ถือบัตรได้แค่ ใบเดียว ก็จะเป็น one-to-one แต่หาก กำหนดให้ผู้ถือบัตรถือได้มากกว่า 1 ใบ ก็จะแทนด้วย one-to-many</p>
+<img alt="_images/options.png" src="_images/options.png" />
+<p>เมื่อแสดงกับ class Model (one-to-one)</p>
+<img alt="_images/credit.png" src="_images/credit.png" />
+<p>เมื่อแสดงกับ class Model (one-to-many)</p>
+<img alt="_images/one-to-many2.png" src="_images/one-to-many2.png" />
+</div>
+<div class="section" id="id1">
+<h2>ตัวอย่าง<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>ความสัมพันธ์ ระหว่างแผนกและพนักงาน</li>
+</ul>
+<img alt="_images/employee.png" src="_images/employee.png" />
+<ul class="simple">
+<li>วิเคราะห์ฐานข้อมูลโรงพยาบาล</li>
+</ul>
+<img alt="_images/doctor.png" src="_images/doctor.png" />
+</div>
+<div class="section" id="id2">
+<h2>2. ส่วนที่เกี่ยวกับการควบคุมความถูกต้องให้กับข้อมูล<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>2.1 กฎความคงสภาพของเอนทิตี (Entity Integrity Rule)</p>
+<ul>
+<li><p class="first">คีย์หลักของรีเลชั่น จะต้องมีค่าข้อมูลที่ไม่ซ้ำกัน (unique)</p>
+<blockquote>
+<div><p>เนื่องจากคุณสมบัติของคีย์หลัก จะเป็นแอททริบิวท์ที่ใช้ในการเจาะจงแถวข้อมูลใดแถวข้อมูลหนึ่งในรีเลชัน
+ดังนั้นจึงจะให้ค่าข้อมูลที่ซ้ำกันไม่ได้</p>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>ค่าข้อมูลของคีย์หลักจะต้องไม่เป็นค่าว่าง (Null Value)</dt>
+<dd><p class="first last">จะต้องไม่มีแอททริบิวท์ใดที่เป็นส่วนประกอบของคีย์หลักของรีเลชันนั้นเป็นค่าว่าง เพราะค่าของข้อมูลในคีย์หลัก
+จะถูกใช้เจาะจงถึงข้อมูลแถวใด ๆ ในรีเลชัน</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>2.2 กฎความคงสภาพของการอ้างอิง (Referential Integrity Rule)</p>
+<blockquote>
+<div>ถ้ารีเลชันใดมีแอททริบิวท์ที่เป็นคีย์นอกอยู่ ข้อมูลที่เป็นคีย์นอกนั้นจะต้องไปปรากฏเป็นข้อมูลของคีย์หลักของอีกรีเลชัน
+ที่มีความสัมพันธ์กัน หรืออาจให้ข้อมูลที่เป็นคีย์นอกนั้นจะต้องมีค่าเป็นค่าว่าง</div></blockquote>
+</div>
+<div class="section" id="data-manipulation">
+<h2>3. การจัดการกับข้อมูล (Data manipulation)<a class="headerlink" href="#data-manipulation" title="Permalink to this headline">¶</a></h2>
+<p>Dr. E.F. Codd ได้นำทฤษฎีของเซท (set) ซึ่งเป็นทฤษฎีทางคณิตศาสตร์มาใช้ในการจัดการกับข้อมูลของฐาน
+เชิงสัมพันธ์ โดยเซท หมายถึง คำที่ใช้บ่งบอกถึงกลุ่มของสิ่งต่างๆ และเมื่อกล่าวถึงกลุ่มใดแน่นอนว่าสิ่งใดอยู่ใน
+กลุ่มสิ่งใดไม่อยู่ในกลุ่ม ตัวอย่าง</p>
+<p>ให้ A เป็นเซตของผลไม้, A = {สับปะรด, ทุเรียน, มังคุด, ลำไย, ลิ้นจี่}   จำนวนสมาชิกของ A, n(A)=5 และ</p>
+<p>ให้ B เป็นเซตสีของรุ้ง จะได้ B = {สีม่วง, สีคราม, สีน้ำเงิน, สีเขียว, สีเหลือง, สีแสด, สีแดง} และ n(B)=7</p>
+<p>การจัดการกับข้อมูล (Data manipulation) ได้แก่</p>
+<ul class="simple">
+<li>ยูเนียน (Union) ใช้สัญลักษณ์ (∪) เชื่อมความสัมพันธ์เข้าด้วยกัน คือ การแสดงข้อมูลตามลักษณะทฤษฎีการUnionของเซต กล่าวได้ว่ายูเนียนของ A และ B คือเซตที่เกิดจากการรวบรวมสมาชิกของ A และ B เข้าไว้ด้วยกัน</li>
+<li>อินเตอร์เซกชัน (Intersection) คือ โอเปอเรเตอร์ทางคณิตศาสตร์ที่ใช้ในการแสดงข้อมูลที่มีอยู่ในทั้งสองรีเลชั่นหรือมากกว่า โดยรีเลชั่นที่จะมา Intersection กันจะเป็นรีเลชั่นที่ไปกันได้ กล่าวได้ว่า อินเตอร์เซกชันของ A และ B คือเซตที่ประกอบด้วยสมาชิกที่เหมือนกันของ A และ B</li>
+<li>ผลต่างระหว่างเซต (Difference Set) (Minus) ใช้สัญลักษณ์ (-) หาความแตกต่างระหว่างความสัมพันธ์คือ การแสดงข้อมูลทูเพิลของรีเลชัน ซึ่งไม่มีอยู่ในอีกรีเลชันหนึ่ง ตามทฤษฎีการ Difference ของเซตกล่าวได้ว่า ผลต่างระหว่างเซต A และเซต B คือสมาชิกอยู่ในเซต B โดย“ ผลต่างระหว่างเซต A และเซต Bเขียนแทนด้วย A – B ”</li>
+<li>Join Operator คือ การกระทำเพื่อแสดงข้อมูลที่เป็นไปได้ทั้งหมดที่เกิดจากการเชื่อมโยงข้อมูลของ 2 รีเลชั่น</li>
+<li>Division คือ การแสดงข้อมูลจากสองรีเลชั่น โดยที่รีเลชั่นทั้งสองมีแอททริบิวต์อย่างน้อยหนึ่งแอททริบิวต์ที่เหมือนกันผลลัพธ์ที่ได้ จะเป็นค่าของแอททริบิวต์จากรีเลชั่นที่มีจำนวนแอททริบิวต์มากกว่า</li>
+<li>แบบมีข้อจำกัด (Restrict) คือ การแสดงข้อมูลในทูเพิล ซึ่งมีข้อมูลตรงตามเงื่อนไขที่ระบุ หากมีการปรับปรุง (Update)หรือลบ(Delete) ข้อมูลในกุญแจหลักของรีเลชันหลัก(Parent relation) ที่มีข้อมูลที่เป็นกุญแจนอกอ้างอิงอยู่ในขณะนั้น จะไม่สามารถปรับปรุงหรือลบข้อมูลดังกล่าวได้ ตัวอย่างเช่น หากต้องการแก้ไข “รหัสสาขา” ในรีเลชัน “สาขา” จาก “B005” เป็น B050” (หรือต้องการลบ สาขาที่มีรหัส “B005” ออกจากรีเลชัน “สาขา”) จะไม่สามารถทำได้หากมีการอ้างถึงข้อมูล “B005” ในแอททริบิวท์ “รหัสสาขา” ในรีเลชัน “พนักงาน” (ซึ่งทำหน้าที่เป็นกุญแจนอก)  จะแก้ไขได้ก็ต่อเมื่อ ไม่มีการอ้างถึงข้อมูลดังกล่าวในกุญแจนอกของรีเลชัน “พนักงาน” แล้ว</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Mysql installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Mysql Tutorial’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
