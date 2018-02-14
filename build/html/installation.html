@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -30,6 +32,10 @@
   
 
   
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
 
   
         <link rel="index" title="Index"
@@ -37,7 +43,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
         <link rel="next" title="Vagrant" href="vagrant.html"/>
-        <link rel="prev" title="Welcome to Mysql Tutorial’s documentation!" href="index.html"/> 
+        <link rel="prev" title="Relational Database" href="relational.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,6 +98,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Mysql installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-reposioty">Install Reposioty</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#security-firewall">security firewall</a></li>
@@ -171,11 +178,11 @@
 <div class="section" id="install-reposioty">
 <h2>Install Reposioty<a class="headerlink" href="#install-reposioty" title="Permalink to this headline">¶</a></h2>
 <p>MYSQL community เปิด browser ไปที่</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>https://dev.mysql.com/downloads/repo/yum/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://dev.mysql.com/downloads/repo/yum/
 </pre></div>
 </div>
 <img alt="_images/mysql-rpm.png" src="_images/mysql-rpm.png" />
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -187,7 +194,7 @@
 </pre></div>
 </td></tr></table></div>
 <p>ตรวจสอบค่า output ออกมา</p>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -199,7 +206,7 @@
 </pre></div>
 </td></tr></table></div>
 <p>output</p>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -227,8 +234,8 @@
 <h2>security firewall<a class="headerlink" href="#security-firewall" title="Permalink to this headline">¶</a></h2>
 <p>ตั้งค่า ไฟล์วอล ที่ พอร์ต 3306 โดยกำหนดให้กับ  interface  eth1  ใน zone  truested
 การ active โซนใน ไฟล์วอลจะเกิดขึ้นโดยอัตโนมัติทันทีที่มีการ add interace ให้แก่ โซน
-ในคำสั่ง &nbsp;<code class="docutils literal"><span class="pre">firewall-cmd</span></code>  จะต้อง  ระบุบ  <code class="docutils literal"><span class="pre">--permanent</span></code>  ทุกครั้ง และจึงทำการ &nbsp; <code class="docutils literal"><span class="pre">--reload</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo systemctl start firewalld
+ในคำสั่ง &nbsp;<code class="docutils literal notranslate"><span class="pre">firewall-cmd</span></code>  จะต้อง  ระบุบ  <code class="docutils literal notranslate"><span class="pre">--permanent</span></code>  ทุกครั้ง และจึงทำการ &nbsp; <code class="docutils literal notranslate"><span class="pre">--reload</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl start firewalld
 sudo systemctl <span class="nb">enable</span> firewalld
 sudo firewall-cmd --get-zones
 sudo firewall-cmd --get-default-zone
@@ -264,12 +271,12 @@ trusted
 </pre></div>
 </div>
 <p>หลังการติดตั้ง installer ได้ทำการสร้าง  temporary password  ให้ตรวจสอบดังนี้</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo grep <span class="s1">&#39;temporary password&#39;</span>  /var/log/mysqld.log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo grep <span class="s1">&#39;temporary password&#39;</span>  /var/log/mysqld.log
 <span class="m">2018</span>-02-12T04:10:28.290165Z <span class="m">1</span> <span class="o">[</span>Note<span class="o">]</span> A temporary password is generated <span class="se">\</span>
 <span class="k">for</span> root@localhost: ?eUbcipl:8E8
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo mysql_secure_installation
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mysql_secure_installation
 
 Securing the MySQL server deployment.
 
@@ -277,20 +284,20 @@ Enter password <span class="k">for</span> user root:
 </pre></div>
 </div>
 <p>หลังจากกรอก รหัสชั่วคราวเรียบร้อย ระบบจะให้เราทำการเปลี่ยน password อีกครั้งword อีกครั้ง</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>The existing password <span class="k">for</span> the user account root has expired. Please <span class="nb">set</span> a new password.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>The existing password <span class="k">for</span> the user account root has expired. Please <span class="nb">set</span> a new password.
 
 New password:
 </pre></div>
 </div>
 <p>ให้กรอก password มีความยาว 12 character ประกอบด้วยอักษรตัวเลข ตัวใหญ่  ตัวเลข และ อักขระพิเศษ
 ระบบจะแสดงผลยืนยันความมั่นใจอีกครั้ง หากเรามัน่ใจให้ตอบ no</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>Output
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Output
 Estimated strength of the password: <span class="m">100</span>
 Change the password <span class="k">for</span> root ? <span class="o">(</span>Press y<span class="p">|</span>Y <span class="k">for</span> Yes, any other key <span class="k">for</span> No<span class="o">)</span> :
 </pre></div>
 </div>
 <p>ยกเลิก anonymous users</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span> ... skipping.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> ... skipping.
 By default, a MySQL installation has an anonymous user,
 allowing anyone to log into MySQL without having to have
 a user account created for them. This is intended only for
@@ -303,7 +310,7 @@ Success.
 </pre></div>
 </div>
 <p>ยกเลิก root login remote</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>Normally, root should only be allowed to connect from
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Normally, root should only be allowed to connect from
 &#39;localhost&#39;. This ensures that someone cannot guess at
 the root password from the network.
 
@@ -317,7 +324,7 @@ environment.
 </pre></div>
 </div>
 <p>remove test database</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
  - Dropping test database...
 Success.
 
@@ -329,7 +336,7 @@ made so far will take effect immediately.
 </pre></div>
 </div>
 <p>reload</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
 Success.
 
 All done!
@@ -338,8 +345,8 @@ All done!
 </div>
 <div class="section" id="login">
 <h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
-<p>ทำการ login  <code class="docutils literal"><span class="pre">mysql</span> <span class="pre">-u</span> <span class="pre">root</span> <span class="pre">-p</span> <span class="pre">-h</span> <span class="pre">localhost</span></code></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u root -p
+<p>ทำการ login  <code class="docutils literal notranslate"><span class="pre">mysql</span> <span class="pre">-u</span> <span class="pre">root</span> <span class="pre">-p</span> <span class="pre">-h</span> <span class="pre">localhost</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mysql -u root -p
 Enter password:
 Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
 Your MySQL connection id is <span class="m">7</span>
@@ -357,13 +364,13 @@ mysql&gt;
 </pre></div>
 </div>
 <p>แต่หาก login ด้วย -h 192.168.30.10 จะไม่สามารถ ที่เข้าถึงได้ use root</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u root -p -h <span class="m">192</span>.168.30.10
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mysql -u root -p -h <span class="m">192</span>.168.30.10
 Enter password:
 ERROR <span class="m">1130</span> <span class="o">(</span>HY000<span class="o">)</span>: Host <span class="s1">&#39;192.168.30.1&#39;</span> is not allowed to connect to this MySQL server
 </pre></div>
 </div>
 <p>กลับไปยัง เครื่อง mysql database</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mysql&gt; CREATE USER <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;P@ssw0rd&#39;</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; CREATE USER <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;P@ssw0rd&#39;</span><span class="p">;</span>
 Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
 
 mysql&gt; CREATE USER <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;192.168.30.1&#39;</span> IDENTIFIED BY <span class="s1">&#39;P@ssw0rd&#39;</span><span class="p">;</span>
@@ -389,7 +396,7 @@ mysql&gt; SELECT host,user FROM user<span class="p">;</span>
 </div>
 <div class="section" id="grant-permission">
 <h2>Grant permission<a class="headerlink" href="#grant-permission" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default"><div class="highlight"><pre><span></span>GRANT type_of_permission ON database_name.table_name TO ‘username’@&#39;localhost’;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRANT type_of_permission ON database_name.table_name TO ‘username’@&#39;localhost’;
 </pre></div>
 </div>
 <p>type_of_permission &nbsp;สามารถเลือกได้ดังนี้</p>
@@ -403,7 +410,7 @@ mysql&gt; SELECT host,user FROM user<span class="p">;</span>
 <li>UPDATE- allow them to update table rows</li>
 <li>GRANT OPTION- allows them to grant or remove other users’ privileges</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mysql&gt; GRANT ALL PRIVILEGES ON mydatabase.* to <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; GRANT ALL PRIVILEGES ON mydatabase.* to <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
 
 mysql&gt; GRANT ALL PRIVILEGES ON mydatabase.* to <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;192.168.30.1&#39;</span><span class="p">;</span>
@@ -422,7 +429,7 @@ mysql&gt; SHOW GRANTS FOR dbadmin@localhost<span class="p">;</span>
 </pre></div>
 </div>
 <p>ทดสอบการ  login จาก 192.168.30.1 (host) โดยการเปิด terminal ขึ้นมาใหม่จากเครื่อง host</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mysql -u dbadmin -p -h <span class="m">192</span>.168.30.10
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mysql -u dbadmin -p -h <span class="m">192</span>.168.30.10
 Enter password:
 Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
 Your MySQL connection id is <span class="m">14</span>
@@ -468,7 +475,7 @@ Download ใช้งานได้ทั้ง window, linux , mac</p>
         <a href="vagrant.html" class="btn btn-neutral float-right" title="Vagrant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to Mysql Tutorial’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="relational.html" class="btn btn-neutral" title="Relational Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

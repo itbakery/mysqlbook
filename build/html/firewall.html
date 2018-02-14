@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -29,6 +31,10 @@
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
 
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   
 
   
@@ -91,7 +97,10 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Mysql installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Firewall Basic</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#get-services">get services</a></li>
@@ -164,13 +173,13 @@
   <div class="section" id="firewall-basic">
 <h1>Firewall Basic<a class="headerlink" href="#firewall-basic" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/firewalld-architecture.png" src="_images/firewalld-architecture.png" />
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">state</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">state</span>
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="n">zones</span>
 <span class="n">public</span>
   <span class="n">interfaces</span><span class="p">:</span> <span class="n">eth0</span> <span class="n">eth1</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">zone</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">interface</span><span class="o">=</span><span class="n">eth0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">zone</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">interface</span><span class="o">=</span><span class="n">eth0</span>
 <span class="n">public</span>
 
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">interfaces</span>
@@ -196,9 +205,9 @@
 </div>
 <div class="section" id="get-services">
 <h2>get services<a class="headerlink" href="#get-services" title="Permalink to this headline">¶</a></h2>
-<p>แสดงรายการ service ที่โหลดอยู่ในระบบ โดยไปอ่านค่าของ configuration ที่อยู่ใน <code class="docutils literal"><span class="pre">/usr/lib/firewalld/services/</span></code>
-โดยมีชื่อ <code class="docutils literal"><span class="pre">service-name.xml</span></code></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">firewalld</span><span class="o">/</span><span class="n">services</span><span class="o">/</span>
+<p>แสดงรายการ service ที่โหลดอยู่ในระบบ โดยไปอ่านค่าของ configuration ที่อยู่ใน <code class="docutils literal notranslate"><span class="pre">/usr/lib/firewalld/services/</span></code>
+โดยมีชื่อ <code class="docutils literal notranslate"><span class="pre">service-name.xml</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">firewalld</span><span class="o">/</span><span class="n">services</span><span class="o">/</span>
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">services</span>
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">info</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">ftp</span>
 
@@ -213,8 +222,8 @@
 </div>
 <div class="section" id="add-services">
 <h2>add services<a class="headerlink" href="#add-services" title="Permalink to this headline">¶</a></h2>
-<p>การเพิ่ม service ให้แก่โซน สามารถ ใช้ <code class="docutils literal"><span class="pre">--add-service</span></code> แต่หากไม่ระบุ โซนจะเท่ากับเป็นการ add ไปยัง default zone</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-service=mysql
+<p>การเพิ่ม service ให้แก่โซน สามารถ ใช้ <code class="docutils literal notranslate"><span class="pre">--add-service</span></code> แต่หากไม่ระบุ โซนจะเท่ากับเป็นการ add ไปยัง default zone</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-service=mysql
 success
 $ sudo firewall-cmd --reload
 success
@@ -234,8 +243,8 @@ trusted
   rich rules:
 </pre></div>
 </div>
-<p>สามรถใช้คำสั่ง <code class="docutils literal"><span class="pre">--add-port</span></code> ระบุ port/protocal ที่ต้องการ สามารถที่จะระบุแบบ &nbsp;&nbsp;port เดียวหรือสามารถระบุเป็นช่วง</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-port=8080/tcp
+<p>สามรถใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">--add-port</span></code> ระบุ port/protocal ที่ต้องการ สามารถที่จะระบุแบบ &nbsp;&nbsp;port เดียวหรือสามารถระบุเป็นช่วง</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-port=8080/tcp
 $ sudo firewall-cmd --permanent --zone=trusted --add-port=5060-5061/udp
 $ sudo firewall-cmd --zone=trusted --list-ports
 $ sudo firewall-cmd --zone=trusted --list-services

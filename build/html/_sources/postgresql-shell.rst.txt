@@ -1,0 +1,13 @@
+PostgreSQL Commands
+===================
+การใช้งานผ่านทาง sql shell (psql) สามารถใช้งานได้ดังนี้
+
+.. code-block:: bash
+
+    postgres-# CREATE DATABASE testdb1;
+
+การใช้งานผ่านคำสั่ง createdb command ผ่านทาง linux shell 
+
+.. code-block:: bash
+
+    createdb -h localhost -p 5432 -U postgres testdb2

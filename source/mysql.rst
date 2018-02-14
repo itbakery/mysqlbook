@@ -1,5 +1,5 @@
-Mysql installation
-==================
+Install Mysql installation  on cenos 7
+======================================
 
 การติดตั้ง mysql บน enterprise centos 7 สามารถเลือกติดตั้ง ได้จาก MySQL community yum repository หรือ mariadb
 
@@ -307,4 +307,4 @@ Install MYSQL Workbench
 เป็นเครื่องมือสำหรับการบริหารจัดการ ฐานข้อมูล โดยไปยัง `https://www.mysql.com/products/workbench/ <https://www.mysql.com/products/workbench/>`_
 Download ใช้งานได้ทั้ง window, linux , mac
 
-.. image:: _static/images/mysql-workbench.png 
+.. image:: _static/images/mysql-workbench.png

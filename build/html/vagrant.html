@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -30,13 +32,18 @@
   
 
   
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
 
   
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
-        <link rel="prev" title="Mysql installation" href="installation.html"/> 
+        <link rel="next" title="Firewall Basic" href="firewall.html"/>
+        <link rel="prev" title="PostgreSQL Commands" href="postgres-shell.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,8 +98,12 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Mysql installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
 </ul>
 
             
@@ -158,13 +169,13 @@
             
   <div class="section" id="vagrant">
 <h1>Vagrant<a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h1>
-<p>เตรียมเครื่องด้วย vagrant สร้าง project folder ชื่อ <code class="docutils literal"><span class="pre">mysql</span></code> และสร้าง file <code class="docutils literal"><span class="pre">Vagrantfile</span></code> ดังนี้</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">mysql</span>
+<p>เตรียมเครื่องด้วย vagrant สร้าง project folder ชื่อ <code class="docutils literal notranslate"><span class="pre">mysql</span></code> และสร้าง file <code class="docutils literal notranslate"><span class="pre">Vagrantfile</span></code> ดังนี้</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">mysql</span>
 <span class="n">cd</span> <span class="n">mysql</span>
 <span class="n">vim</span> <span class="n">Vagrantfile</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
 <span class="c1"># vi: set ft=ruby :</span>
 
 <span class="c1"># All Vagrant configuration is done below. The &quot;2&quot; in Vagrant.configure</span>
@@ -187,16 +198,16 @@
 <span class="n">end</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">up</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">up</span>
 <span class="n">vagrant</span> <span class="n">ssh</span>
 </pre></div>
 </div>
 <p>หากมีความผิดพลาดเนื่องจาก locale</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">bash</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">setlocale</span><span class="p">:</span> <span class="n">LC_CTYPE</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">change</span> <span class="n">locale</span> <span class="p">(</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="p">):</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">bash</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">setlocale</span><span class="p">:</span> <span class="n">LC_CTYPE</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">change</span> <span class="n">locale</span> <span class="p">(</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="p">):</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
 </pre></div>
 </div>
 <p>ให้ทำการแก้ไข</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
 <span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 <span class="n">LC_ALL</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 </pre></div>
@@ -213,8 +224,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="firewall.html" class="btn btn-neutral float-right" title="Firewall Basic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="installation.html" class="btn btn-neutral" title="Mysql installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="postgres-shell.html" class="btn btn-neutral" title="PostgreSQL Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

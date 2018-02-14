@@ -1,0 +1,539 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Install Mysql installation on cenos 7 &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="next" title="Install PostgreSQL 10 on CentOS 7" href="postgres.html"/>
+        <link rel="prev" title="Relational Database" href="relational.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Install Mysql installation  on cenos 7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-reposioty">Install Reposioty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-firewall">security firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grant-permission">Grant permission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-mysql-workbench">Install MYSQL Workbench</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Install Mysql installation  on cenos 7</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mysql.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="install-mysql-installation-on-cenos-7">
+<h1>Install Mysql installation  on cenos 7<a class="headerlink" href="#install-mysql-installation-on-cenos-7" title="Permalink to this headline">¶</a></h1>
+<p>การติดตั้ง mysql บน enterprise centos 7 สามารถเลือกติดตั้ง ได้จาก MySQL community yum repository หรือ mariadb</p>
+<div class="section" id="install-reposioty">
+<h2>Install Reposioty<a class="headerlink" href="#install-reposioty" title="Permalink to this headline">¶</a></h2>
+<p>MYSQL community เปิด browser ไปที่</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://dev.mysql.com/downloads/repo/yum/
+</pre></div>
+</div>
+<img alt="_images/mysql-rpm.png" src="_images/mysql-rpm.png" />
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span> wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+ md5sum mysql57-community-release-el7-11.noarch.rpm
+
+ output
+ c070b754ce2de9f714ab4db4736c7e05  mysql57-community-release-el7-11.noarch.rpm
+</pre></div>
+</td></tr></table></div>
+<p>ตรวจสอบค่า output ออกมา</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span> sudo rpm -ivh mysql57-community-release-el7-11.noarch.rpm
+ sudo yum install mysql-server
+ sudo systemctl start mysqld
+ sudo systemctl <span class="nb">enable</span> mysqld
+ sudo systemctl status mysqld
+</pre></div>
+</td></tr></table></div>
+<p>output</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span> ● mysqld.service - MySQL Server
+    Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/mysqld.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: disabled<span class="o">)</span>
+    Active: active <span class="o">(</span>running<span class="o">)</span> since Mon <span class="m">2018</span>-02-12 <span class="m">04</span>:10:30 UTC<span class="p">;</span> 7min ago
+      Docs: man:mysqld<span class="o">(</span><span class="m">8</span><span class="o">)</span>
+                    http://dev.mysql.com/doc/refman/en/using-systemd.html
+  Main PID: <span class="m">4378</span> <span class="o">(</span>mysqld<span class="o">)</span>
+    CGroup: /system.slice/mysqld.service
+            └─4378 /usr/sbin/mysqld --daemonize --pid-file<span class="o">=</span>/var/run/mysqld/mysqld.pid
+
+ Feb <span class="m">12</span> <span class="m">04</span>:10:25 localhost.localdomain systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting MySQL Server...
+ Feb <span class="m">12</span> <span class="m">04</span>:10:30 localhost.localdomain systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started MySQL Server.
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="security-firewall">
+<h2>security firewall<a class="headerlink" href="#security-firewall" title="Permalink to this headline">¶</a></h2>
+<p>ตั้งค่า ไฟล์วอล ที่ พอร์ต 3306 โดยกำหนดให้กับ  interface  eth1  ใน zone  truested
+การ active โซนใน ไฟล์วอลจะเกิดขึ้นโดยอัตโนมัติทันทีที่มีการ add interace ให้แก่ โซน
+ในคำสั่ง &nbsp;<code class="docutils literal notranslate"><span class="pre">firewall-cmd</span></code>  จะต้อง  ระบุบ  <code class="docutils literal notranslate"><span class="pre">--permanent</span></code>  ทุกครั้ง และจึงทำการ &nbsp; <code class="docutils literal notranslate"><span class="pre">--reload</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl start firewalld
+sudo systemctl <span class="nb">enable</span> firewalld
+sudo firewall-cmd --get-zones
+sudo firewall-cmd --get-default-zone
+sudo firewall-cmd --list-all
+
+//output
+public <span class="o">(</span>active<span class="o">)</span>
+  target: default
+  icmp-block-inversion: no
+  interfaces: eth0 eth1
+  sources:
+  services: dhcpv6-client ssh
+  ports:
+  protocols:
+  masquerade: no
+  forward-ports:
+  sourceports:
+  icmp-blocks:
+  rich rules:
+
+sudo firewall-cmd --permanent --add-interface<span class="o">=</span>eth1 --zone<span class="o">=</span>trusted
+sudo firewall-cmd --permanent --zone<span class="o">=</span>trusted --add-source<span class="o">=</span><span class="m">192</span>.168.30.0/24
+sudo firewall-cmd --permanent --zone<span class="o">=</span>trusted --add-port<span class="o">=</span><span class="m">3306</span>/tcp
+sudo firewall-cmd  --reload
+
+$ firewall-cmd --get-active-zones
+//output
+public
+  interfaces: eth0
+trusted
+  interfaces: eth1
+  sources: <span class="m">192</span>.168.30.0/24
+</pre></div>
+</div>
+<p>หลังการติดตั้ง installer ได้ทำการสร้าง  temporary password  ให้ตรวจสอบดังนี้</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo grep <span class="s1">&#39;temporary password&#39;</span>  /var/log/mysqld.log
+<span class="m">2018</span>-02-12T04:10:28.290165Z <span class="m">1</span> <span class="o">[</span>Note<span class="o">]</span> A temporary password is generated <span class="se">\</span>
+<span class="k">for</span> root@localhost: ?eUbcipl:8E8
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password <span class="k">for</span> user root:
+</pre></div>
+</div>
+<p>หลังจากกรอก รหัสชั่วคราวเรียบร้อย ระบบจะให้เราทำการเปลี่ยน password อีกครั้งword อีกครั้ง</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>The existing password <span class="k">for</span> the user account root has expired. Please <span class="nb">set</span> a new password.
+
+New password:
+</pre></div>
+</div>
+<p>ให้กรอก password มีความยาว 12 character ประกอบด้วยอักษรตัวเลข ตัวใหญ่  ตัวเลข และ อักขระพิเศษ
+ระบบจะแสดงผลยืนยันความมั่นใจอีกครั้ง หากเรามัน่ใจให้ตอบ no</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Output
+Estimated strength of the password: <span class="m">100</span>
+Change the password <span class="k">for</span> root ? <span class="o">(</span>Press y<span class="p">|</span>Y <span class="k">for</span> Yes, any other key <span class="k">for</span> No<span class="o">)</span> :
+</pre></div>
+</div>
+<p>ยกเลิก anonymous users</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> ... skipping.
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+</pre></div>
+</div>
+<p>ยกเลิก root login remote</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Normally, root should only be allowed to connect from
+&#39;localhost&#39;. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+By default, MySQL comes with a database named &#39;test&#39; that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+</pre></div>
+</div>
+<p>remove test database</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+</pre></div>
+</div>
+<p>reload</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done!
+</pre></div>
+</div>
+</div>
+<div class="section" id="login">
+<h2>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
+<p>ทำการ login  <code class="docutils literal notranslate"><span class="pre">mysql</span> <span class="pre">-u</span> <span class="pre">root</span> <span class="pre">-p</span> <span class="pre">-h</span> <span class="pre">localhost</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is <span class="m">7</span>
+Server version: <span class="m">5</span>.7.21 MySQL Community Server <span class="o">(</span>GPL<span class="o">)</span>
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt;
+</pre></div>
+</div>
+<p>แต่หาก login ด้วย -h 192.168.30.10 จะไม่สามารถ ที่เข้าถึงได้ use root</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mysql -u root -p -h <span class="m">192</span>.168.30.10
+Enter password:
+ERROR <span class="m">1130</span> <span class="o">(</span>HY000<span class="o">)</span>: Host <span class="s1">&#39;192.168.30.1&#39;</span> is not allowed to connect to this MySQL server
+</pre></div>
+</div>
+<p>กลับไปยัง เครื่อง mysql database</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; CREATE USER <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;P@ssw0rd&#39;</span><span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+mysql&gt; CREATE USER <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;192.168.30.1&#39;</span> IDENTIFIED BY <span class="s1">&#39;P@ssw0rd&#39;</span><span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+mysql&gt; CREATE DATABASE mydatabase<span class="p">;</span>
+
+mysql&gt; use mysql<span class="p">;</span>
+Database changed
+mysql&gt; SELECT host,user FROM user<span class="p">;</span>
++--------------+---------------+
+<span class="p">|</span> host         <span class="p">|</span> user          <span class="p">|</span>
++--------------+---------------+
+<span class="p">|</span> <span class="m">192</span>.168.30.1 <span class="p">|</span> dbadmin       <span class="p">|</span>
+<span class="p">|</span> localhost    <span class="p">|</span> dbadmin       <span class="p">|</span>
+<span class="p">|</span> localhost    <span class="p">|</span> mysql.session <span class="p">|</span>
+<span class="p">|</span> localhost    <span class="p">|</span> mysql.sys     <span class="p">|</span>
+<span class="p">|</span> localhost    <span class="p">|</span> root          <span class="p">|</span>
++--------------+---------------+
+<span class="m">5</span> rows in <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="grant-permission">
+<h2>Grant permission<a class="headerlink" href="#grant-permission" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRANT type_of_permission ON database_name.table_name TO ‘username’@&#39;localhost’;
+</pre></div>
+</div>
+<p>type_of_permission &nbsp;สามารถเลือกได้ดังนี้</p>
+<ul class="simple">
+<li>ALL PRIVILEGES- as we saw previously, this would allow a MySQL user full access to a designated database (or if no database is selected, global access across the system)</li>
+<li>CREATE- allows them to create new tables or databases</li>
+<li>DROP- allows them to them to delete tables or databases</li>
+<li>DELETE- allows them to delete rows from tables</li>
+<li>INSERT- allows them to insert rows into tables</li>
+<li>SELECT- allows them to use the SELECT command to read through databases</li>
+<li>UPDATE- allow them to update table rows</li>
+<li>GRANT OPTION- allows them to grant or remove other users’ privileges</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; GRANT ALL PRIVILEGES ON mydatabase.* to <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+mysql&gt; GRANT ALL PRIVILEGES ON mydatabase.* to <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;192.168.30.1&#39;</span><span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+
+mysql&gt; FLUSH PRIVILEGES<span class="p">;</span>
+
+mysql&gt; SHOW GRANTS FOR dbadmin@localhost<span class="p">;</span>
++-----------------------------------------------------------------+
+<span class="p">|</span> Grants <span class="k">for</span> dbadmin@localhost                                    <span class="p">|</span>
++-----------------------------------------------------------------+
+<span class="p">|</span> GRANT USAGE ON *.* TO <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span>                     <span class="p">|</span>
+<span class="p">|</span> GRANT ALL PRIVILEGES ON <span class="sb">`</span>mydatabase<span class="sb">`</span>.* TO <span class="s1">&#39;dbadmin&#39;</span>@<span class="s1">&#39;localhost&#39;</span> <span class="p">|</span>
++-----------------------------------------------------------------+
+<span class="m">2</span> rows in <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</pre></div>
+</div>
+<p>ทดสอบการ  login จาก 192.168.30.1 (host) โดยการเปิด terminal ขึ้นมาใหม่จากเครื่อง host</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mysql -u dbadmin -p -h <span class="m">192</span>.168.30.10
+Enter password:
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span>.
+Your MySQL connection id is <span class="m">14</span>
+Server version: <span class="m">5</span>.7.21 MySQL Community Server <span class="o">(</span>GPL<span class="o">)</span>
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">2000</span>, <span class="m">2018</span>, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;\h&#39;</span> <span class="k">for</span> help. Type <span class="s1">&#39;\c&#39;</span> to clear the current input statement.
+
+mysql&gt; SHOW databases<span class="p">;</span>
++--------------------+
+<span class="p">|</span> Database           <span class="p">|</span>
++--------------------+
+<span class="p">|</span> information_schema <span class="p">|</span>
+<span class="p">|</span> mydatabase         <span class="p">|</span>
++--------------------+
+<span class="m">2</span> rows in <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-mysql-workbench">
+<h2>Install MYSQL Workbench<a class="headerlink" href="#install-mysql-workbench" title="Permalink to this headline">¶</a></h2>
+<p>เป็นเครื่องมือสำหรับการบริหารจัดการ ฐานข้อมูล โดยไปยัง <a class="reference external" href="https://www.mysql.com/products/workbench/">https://www.mysql.com/products/workbench/</a>
+Download ใช้งานได้ทั้ง window, linux , mac</p>
+<img alt="_images/mysql-workbench.png" src="_images/mysql-workbench.png" />
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="postgres.html" class="btn btn-neutral float-right" title="Install PostgreSQL 10 on CentOS 7" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="relational.html" class="btn btn-neutral" title="Relational Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

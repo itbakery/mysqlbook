@@ -10,8 +10,10 @@ Welcome to Mysql Tutorial's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   relational 
-   installation
+   relational
+   mysql
+   postgres
+   postgres-shell
    vagrant
    firewall
 

@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -29,6 +31,10 @@
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
 
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   
 
   
@@ -92,7 +98,9 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Mysql installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
 </ul>
@@ -164,24 +172,66 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="relational.html#relation">คุณสมบัติของความสัมพันธ์ (รีเลชัน) Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#relation">ความสัมพันธ์ Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#id1">คุณสมบัติของความสัมพันธ์  Relation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#key">กุญแจ (key)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#attribute">แอททริบิวต์ (Attribute)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#degree">ดีกรี (Degree)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#cardinality">คาร์ดินัลลิตี้ (Cardinality)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#modality">โมเดลลิตี้(Modality)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#entity-relationship-diagram">Entity-Relationship Diagram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relational.html#id1">ตัวอย่าง</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relational.html#id2">2. ส่วนที่เกี่ยวกับการควบคุมความถูกต้องให้กับข้อมูล</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#id2">ตัวอย่าง</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#id3">2. ส่วนที่เกี่ยวกับการควบคุมความถูกต้องให้กับข้อมูล</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relational.html#data-manipulation">3. การจัดการกับข้อมูล (Data manipulation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#id4">การอ่าน ความสัมพันธ์</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#conclusion">Conclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#database-er-diagram">Database ER diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#uml-data-modeling-concept">UML Data Modeling concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational.html#classes">1. Classes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Mysql installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#install-reposioty">Install Reposioty</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#security-firewall">security firewall</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#login">Login</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#grant-permission">Grant permission</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#install-mysql-workbench">Install MYSQL Workbench</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mysql.html#install-reposioty">Install Reposioty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mysql.html#security-firewall">security firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mysql.html#login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mysql.html#grant-permission">Grant permission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mysql.html#install-mysql-workbench">Install MYSQL Workbench</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#postgresql-10-centos-7">ติดตั้ง postgresql 10 บน centos 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#initialize-postgres-server">Initialize postgres Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#start-server">Start server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#enable-firewall">Enable firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#access-postgresql-command-prompt">Access PostgreSQL command prompt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#change-mode-ident-to-md5">Change mode ident to md5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#allow-listen-to-all-interface">Allow listen to all interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#restart">Restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#set-postgres-password">Set postgres password</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres.html#test-connect">Test connect</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#id1">สรุปคำสั่งเบื้องต้น</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#id2">ตัวอย่าง 1 สร้างตาราง</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#information-schema-meta-data">Information_schema meta data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#tables-pg-catalog-schema">แสดง tables ใช้ pg_catalog schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#id3">ตัวอย่าง 2 สายการบิน</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#postgresql-data-type">Postgresql data type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#create-table">CREATE TABLE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#insert-table">INSERT TABLE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#select-and-where">SELECT and WHERE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#postgresql-comparison-operators">PostgreSQL Comparison Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#postgresql-logical-operators">PostgreSQL Logical Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#aggregate-functions">Aggregate Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#in-not-in-condition">IN, NOT IN CONDITION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#like-not-like">LIKE, NOT LIKE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#update">UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#delete">DELETE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#limit">LIMIT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#order">ORDER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#group-by">GROUP BY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres-shell.html#foreign-keys">Foreign Keys</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>

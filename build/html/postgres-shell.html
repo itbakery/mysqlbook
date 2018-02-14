@@ -1,0 +1,926 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PostgreSQL Commands &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="next" title="Vagrant" href="vagrant.html"/>
+        <link rel="prev" title="Install PostgreSQL 10 on CentOS 7" href="postgres.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PostgreSQL Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">สรุปคำสั่งเบื้องต้น</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ตัวอย่าง 1 สร้างตาราง</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#information-schema-meta-data">Information_schema meta data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tables-pg-catalog-schema">แสดง tables ใช้ pg_catalog schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">ตัวอย่าง 2 สายการบิน</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postgresql-data-type">Postgresql data type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-table">CREATE TABLE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#insert-table">INSERT TABLE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#select-and-where">SELECT and WHERE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postgresql-comparison-operators">PostgreSQL Comparison Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postgresql-logical-operators">PostgreSQL Logical Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aggregate-functions">Aggregate Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-not-in-condition">IN, NOT IN CONDITION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#like-not-like">LIKE, NOT LIKE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#update">UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delete">DELETE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limit">LIMIT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#order">ORDER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#group-by">GROUP BY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#foreign-keys">Foreign Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>PostgreSQL Commands</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/postgres-shell.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="postgresql-commands">
+<h1>PostgreSQL Commands<a class="headerlink" href="#postgresql-commands" title="Permalink to this headline">¶</a></h1>
+<p>สามารถใช้งานได้ดังนี้ 3 วิธีดังนี้</p>
+<ol class="arabic simple">
+<li>การใช้งานผ่านทาง sql shell (psql) connect database ด้วย psql</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>psql -U postgres postgres
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE testdb1;</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE USER dbadmin1;</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># ALTER USER dbadmin1 WITH password &#39;password&#39;;</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># GRANT ALL PRIVILEGES ON DATABASE testdb1 to dbadmin1;</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE USER dbadmin2 WITH PASSWORD &#39;password&#39;;</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \du</span>
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \q</span>
+
+<span class="o">(</span>connect database ชื่อ testdb1 ด้วย user dbadmin1<span class="o">)</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin1 testdb1</span>
+Password <span class="k">for</span> user dbadmin1:
+psql <span class="o">(</span><span class="m">10</span>.2<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">testdb1</span><span class="o">=</span>&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>การใช้งานผ่านคำสั่ง createdb command ผ่านทาง linux shell</li>
+</ol>
+<p>การสร้าง user ผ่านคำสั่ง createuser และ การสร้างฐานข้อมูลผ่านคำสั่ง createdb</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createuser --help</span>
+
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createuser -P -s -d dbadmin3 -U postgres</span>
+Enter password <span class="k">for</span> new role:
+Enter it again:
+Password: <span class="o">(</span>ใส่ password ของ postgres <span class="o">)</span>
+
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createdb --help</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createdb --owner=dbadmin3 -U postgres  testdb3</span>
+Password: <span class="o">(</span>ใส่ password ของ postgres <span class="o">)</span>
+
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin3</span>
+Password <span class="k">for</span> user dbadmin3:
+psql: FATAL:  database <span class="s2">&quot;dbadmin3&quot;</span> does not exist
+<span class="o">(</span>error เพราะ postgres จะพยายาม เปิด database ชื่อเดียวกับ user<span class="o">)</span>
+
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1">## psql -U dbadmin3 -d testdb3</span>
+Password <span class="k">for</span> user dbadmin3:
+psql <span class="o">(</span><span class="m">10</span>.2<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">testdb3</span><span class="o">=</span><span class="c1"># \l</span>
+                            List of databases
+Name    <span class="p">|</span>  Owner   <span class="p">|</span> Encoding <span class="p">|</span>   Collate   <span class="p">|</span>    Ctype    <span class="p">|</span>   Access privileges
+-----------+----------+----------+-------------+-------------+-----------------------
+postgres  <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+template0 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+<span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+template1 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+<span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+testdb1   <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+testdb3   <span class="p">|</span> dbadmin3 <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>สรุปคำสั่งเบื้องต้น<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">testdb1=&gt;</span> <span class="pre">\du</span></code>  แสดงรายชื่อ user</li>
+<li><code class="docutils literal notranslate"><span class="pre">postgres=#</span> <span class="pre">\l</span></code>  แสดงฐานข้อมูลทั้งหมด</li>
+<li><code class="docutils literal notranslate"><span class="pre">postgres=#</span> <span class="pre">\dt</span></code>  แสดงฐานข้อมูลทั้งหมด</li>
+<li><code class="docutils literal notranslate"><span class="pre">postgres=#</span> <span class="pre">\c</span></code>   database`` connect กับฐานข้อมูล</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin1 testdb1</span>
+Password <span class="k">for</span> user dbadmin1:
+psql <span class="o">(</span><span class="m">10</span>.2<span class="o">)</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">testdb1</span><span class="o">=</span>&gt; <span class="se">\d</span>u
+                                   List of roles
+ Role name <span class="p">|</span>                         Attributes                         <span class="p">|</span> Member of
+-----------+------------------------------------------------------------+-----------
+ davide    <span class="p">|</span>                                                            <span class="p">|</span> <span class="o">{}</span>
+ dbadmin1  <span class="p">|</span>                                                            <span class="p">|</span> <span class="o">{}</span>
+ dbadmin3  <span class="p">|</span> Superuser, Create role, Create DB                          <span class="p">|</span> <span class="o">{}</span>
+ jonathan  <span class="p">|</span>                                                            <span class="p">|</span> <span class="o">{}</span>
+ postgres  <span class="p">|</span> Superuser, Create role, Create DB, Replication, Bypass RLS <span class="p">|</span> <span class="o">{}</span>
+
+<span class="nv">testdb1</span><span class="o">=</span>&gt; <span class="se">\l</span>
+                                  List of databases
+   Name    <span class="p">|</span>  Owner   <span class="p">|</span> Encoding <span class="p">|</span>   Collate   <span class="p">|</span>    Ctype    <span class="p">|</span>   Access privileges
+-----------+----------+----------+-------------+-------------+-----------------------
+ postgres  <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+ template0 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+ template1 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+ testdb1   <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>Tc/postgres         +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres+
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">dbadmin1</span><span class="o">=</span>CTc/postgres
+ testdb3   <span class="p">|</span> dbadmin3 <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+<span class="o">(</span><span class="m">5</span> rows<span class="o">)</span>
+
+<span class="nv">testdb1</span><span class="o">=</span>&gt; <span class="se">\c</span> testdb3
+You are now connected to database <span class="s2">&quot;testdb3&quot;</span> as user <span class="s2">&quot;dbadmin1&quot;</span>.
+<span class="nv">testdb3</span><span class="o">=</span>&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>ตัวอย่าง 1 สร้างตาราง<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>สร้างตาราง <code class="docutils literal notranslate"><span class="pre">employees</span></code> ประกอบด้วย colume employee_id, first_name, last_name</li>
+<li><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">employees</span> <span class="pre">(employee_id</span> <span class="pre">int,</span> <span class="pre">first_name</span> <span class="pre">varchar,</span> <span class="pre">last_name</span> <span class="pre">varchar);</span></code></li>
+<li>เพิ่ม record</li>
+<li><code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">employees</span> <span class="pre">VALUES</span> <span class="pre">(1,</span> <span class="pre">'John',</span> <span class="pre">'Doe');</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">testdb3</span><span class="o">=</span>&gt; CREATE TABLE employees <span class="o">(</span>employee_id int, first_name varchar, last_name varchar<span class="o">)</span><span class="p">;</span>
+<span class="nv">testdb3</span><span class="o">=</span>&gt; INSERT INTO employees VALUES <span class="o">(</span><span class="m">1</span>, <span class="s1">&#39;John&#39;</span>, <span class="s1">&#39;Doe&#39;</span><span class="o">)</span><span class="p">;</span>
+
+<span class="nv">testdb3</span><span class="o">=</span>&gt; <span class="se">\d</span> employees
+                 Table <span class="s2">&quot;public.employees&quot;</span>
+Column    <span class="p">|</span>       Type        <span class="p">|</span> Collation <span class="p">|</span> Nullable <span class="p">|</span> Default
+-------------+-------------------+-----------+----------+---------
+employee_id <span class="p">|</span> integer           <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span>
+first_name  <span class="p">|</span> character varying <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span>
+last_name   <span class="p">|</span> character varying <span class="p">|</span>           <span class="p">|</span>          <span class="p">|</span>
+
+<span class="nv">testdb3</span><span class="o">=</span>&gt; SELECT * FROM employees<span class="p">;</span>
+<span class="nv">testdb3</span><span class="o">=</span>&gt; <span class="se">\d</span>t
+       List of relations
+ Schema <span class="p">|</span>   Name    <span class="p">|</span> Type  <span class="p">|</span>  Owner
+--------+-----------+-------+----------
+ public <span class="p">|</span> employees <span class="p">|</span> table <span class="p">|</span> dbadmin1
+ <span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="information-schema-meta-data">
+<h2>Information_schema meta data<a class="headerlink" href="#information-schema-meta-data" title="Permalink to this headline">¶</a></h2>
+<p>ใช้คำสั่ง SELECT ค้นหาชื่อ colume name จากตาราง <code class="docutils literal notranslate"><span class="pre">information_schema</span></code>  meta-data</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>SELECT
+  COLUMN_NAME
+FROM
+  information_schema.COLUMNS
+WHERE
+  <span class="nv">TABLE_NAME</span> <span class="o">=</span> <span class="s1">&#39;employees&#39;</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="tables-pg-catalog-schema">
+<h2>แสดง tables ใช้ pg_catalog schema<a class="headerlink" href="#tables-pg-catalog-schema" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>SELECT
+  *
+FROM
+  pg_catalog.pg_tables
+WHERE
+  schemaname !<span class="o">=</span> <span class="s1">&#39;pg_catalog&#39;</span>
+AND schemaname !<span class="o">=</span> <span class="s1">&#39;information_schema&#39;</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id3">
+<h2>ตัวอย่าง 2 สายการบิน<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ตัวอย่าง ด้านล่าง แสดงเส้นทางการเดินระหว่างเมืองพร้อมระยะทาง</p>
+<img alt="_images/flights.png" src="_images/flights.png" />
+</div>
+<div class="section" id="postgresql-data-type">
+<h2>Postgresql data type<a class="headerlink" href="#postgresql-data-type" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/pgsql-datatype.png" src="_images/pgsql-datatype.png" />
+</div>
+<div class="section" id="create-table">
+<h2>CREATE TABLE<a class="headerlink" href="#create-table" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>สร้างไฟล์ ชื่อ <code class="docutils literal notranslate"><span class="pre">flight-createtable.sql</span></code> มีเนื้อหาดังต่อไปนี้</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">flights</span> <span class="p">(</span>
+    <span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">origin</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">destination</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">duration</span> <span class="n">INTEGER</span> <span class="n">NOT</span> <span class="n">NULL</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>มีการกำหนด constraint <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> ในไฟล์ เพื่อป้องกันค่าว่าง (ไม่กำหนดค่า)</p>
+<img alt="_images/constraint.png" src="_images/constraint.png" />
+<p>เป็น sql syntax เมื่อ import เข้าสู่ฐานข้อมูล ก็ถูกแปลความ สามารถที่จะนำเข้าสู่ database
+ได้ 2 แบบ ได้แก่การใช้การ <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> หรือจะ copy โดยตรงไปยัง postgres shell ก็ได้</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin3 testdb3  &lt; flight-createdb.sql</span>
+Password <span class="k">for</span> user dbadmin3:
+CREATE TABLE
+
+สามารถใช้ option <span class="sb">``</span>-c<span class="sb">``</span> เพื่อส่งคำส่งไปยัง postgres shell
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin3 testdb3  -c &quot;\d&quot;</span>
+Password <span class="k">for</span> user dbadmin3:
+               List of relations
+ Schema <span class="p">|</span>      Name      <span class="p">|</span>   Type   <span class="p">|</span>  Owner
+--------+----------------+----------+----------
+ public <span class="p">|</span> employees      <span class="p">|</span> table    <span class="p">|</span> dbadmin1
+ public <span class="p">|</span> flights        <span class="p">|</span> table    <span class="p">|</span> dbadmin3
+ public <span class="p">|</span> flights_id_seq <span class="p">|</span> sequence <span class="p">|</span> dbadmin3
+</pre></div>
+</div>
+</div>
+<div class="section" id="insert-table">
+<h2>INSERT TABLE<a class="headerlink" href="#insert-table" title="Permalink to this headline">¶</a></h2>
+<p>รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">TABLE_NAME</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">column3</span><span class="p">,</span><span class="o">...</span><span class="n">columnN</span><span class="p">)</span>
+<span class="n">VALUES</span> <span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="n">value3</span><span class="p">,</span><span class="o">...</span><span class="n">valueN</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;London&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Shanghai&#39;</span><span class="p">,</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Istanbul&#39;</span><span class="p">,</span> <span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Moscow&#39;</span><span class="p">,</span> <span class="s1">&#39;Paris&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Lima&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">root</span><span class="nd">@localhost</span> <span class="o">~</span><span class="p">]</span><span class="c1"># psql -U dbadmin3 testdb3  -c &quot;select * from flights&quot;</span>
+<span class="n">Password</span> <span class="k">for</span> <span class="n">user</span> <span class="n">dbadmin3</span><span class="p">:</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">London</span>      <span class="o">|</span>      <span class="mi">415</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">435</span>
+  <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
+  <span class="mi">6</span> <span class="o">|</span> <span class="n">Lima</span>     <span class="o">|</span> <span class="n">New</span> <span class="n">York</span>    <span class="o">|</span>      <span class="mi">455</span>
+<span class="p">(</span><span class="mi">6</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="select-and-where">
+<h2>SELECT and WHERE<a class="headerlink" href="#select-and-where" title="Permalink to this headline">¶</a></h2>
+<p>รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">columnN</span>
+<span class="n">FROM</span> <span class="n">table_name</span>
+<span class="n">WHERE</span> <span class="p">[</span><span class="n">CONDITION</span> <span class="o">|</span> <span class="n">EXPRESSION</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>การใช้งานจะใช้งานร่วมกัน ระหว่าง Comparison และ Logical</p>
+</div>
+<div class="section" id="postgresql-comparison-operators">
+<h2>PostgreSQL Comparison Operators<a class="headerlink" href="#postgresql-comparison-operators" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/operator.png" src="_images/operator.png" />
+</div>
+<div class="section" id="postgresql-logical-operators">
+<h2>PostgreSQL Logical Operators<a class="headerlink" href="#postgresql-logical-operators" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/logical.png" src="_images/logical.png" />
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+<span class="p">(</span><span class="mi">2</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">destination</span> <span class="o">=</span> <span class="s1">&#39;Paris&#39;</span>
+<span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+ <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+ <span class="mi">4</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">435</span>
+ <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
+<span class="p">(</span><span class="mi">3</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">destination</span> <span class="o">=</span> <span class="s1">&#39;Paris&#39;</span> <span class="n">AND</span>  <span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aggregate-functions">
+<h2>Aggregate Functions<a class="headerlink" href="#aggregate-functions" title="Permalink to this headline">¶</a></h2>
+<p>Aggregate function คือการคำนวนแล้วได้ผลลัพท์ เพียงอย่างเดียว จากการคำนวนของชุดข้อมูล ชุดใดๆ</p>
+<img alt="_images/aggregate.png" src="_images/aggregate.png" />
+<ul class="simple">
+<li>ต้องการหาค่าเฉลี่ย <code class="docutils literal notranslate"><span class="pre">avg</span></code></li>
+</ul>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span><span class="p">;</span>
+         <span class="n">avg</span>
+<span class="o">----------------------</span>
+ <span class="mf">501.6666666666666667</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+
+<span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;New York&#39;</span><span class="p">;</span>
+     <span class="n">avg</span>
+<span class="o">----------------------</span>
+ <span class="mf">425.0000000000000000</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ต้องการนับจำนวน record <code class="docutils literal notranslate"><span class="pre">count</span></code></li>
+</ul>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span><span class="p">;</span>
+ <span class="n">count</span>
+<span class="o">-------</span>
+     <span class="mi">6</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span><span class="p">;</span>
+ <span class="n">count</span>
+<span class="o">-------</span>
+     <span class="mi">2</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+<span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;Moscow&#39;</span><span class="p">;</span>
+ <span class="n">count</span>
+<span class="o">-------</span>
+     <span class="mi">1</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ต้องการหาค่า ต่ำสุด และ สูงสุด</li>
+</ul>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT MIN(duration) FROM flights;</span>
+ <span class="nb">min</span>
+<span class="o">-----</span>
+ <span class="mi">245</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT MAX(duration) FROM flights;</span>
+ <span class="nb">max</span>
+<span class="o">-----</span>
+ <span class="mi">760</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="in-not-in-condition">
+<h2>IN, NOT IN CONDITION<a class="headerlink" href="#in-not-in-condition" title="Permalink to this headline">¶</a></h2>
+<p>postgres สามารถค้นหา ด้วย <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">condition</span></code>
+รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expression</span> <span class="n">IN</span> <span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="o">....</span> <span class="n">value_n</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin IN (&#39;New York&#39;, &#39;Lima&#39;);</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">London</span>      <span class="o">|</span>      <span class="mi">415</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">435</span>
+  <span class="mi">6</span> <span class="o">|</span> <span class="n">Lima</span>     <span class="o">|</span> <span class="n">New</span> <span class="n">York</span>    <span class="o">|</span>      <span class="mi">455</span>
+<span class="p">(</span><span class="mi">3</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin NOT IN (&#39;New York&#39;, &#39;Lima&#39;);</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+  <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
+<span class="p">(</span><span class="mi">3</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="like-not-like">
+<h2>LIKE, NOT LIKE<a class="headerlink" href="#like-not-like" title="Permalink to this headline">¶</a></h2>
+<p>รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">LIKE</span> <span class="n">pattern</span>
+<span class="n">string</span> <span class="n">NOT</span> <span class="n">LIKE</span> <span class="n">pattern</span>
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin LIKE &#39;%a%&#39;;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+  <span class="mi">6</span> <span class="o">|</span> <span class="n">Lima</span>     <span class="o">|</span> <span class="n">New</span> <span class="n">York</span>    <span class="o">|</span>      <span class="mi">455</span>
+<span class="p">(</span><span class="mi">3</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Like ใช้ได้กับ text หากต้องการ ค้นหา Attributes ที่เป็น integer ต้องทำการ cast
+เป็น text ด้วย <code class="docutils literal notranslate"><span class="pre">::TEXT</span></code></p>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE duration LIKE &#39;%7%&#39;;</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE duration::TEXT LIKE &#39;%7%&#39;;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+<span class="p">(</span><span class="mi">2</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="update">
+<h2>UPDATE<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p>รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">table_name</span>
+<span class="n">SET</span> <span class="n">column1</span> <span class="o">=</span> <span class="n">value1</span><span class="p">,</span> <span class="n">column2</span> <span class="o">=</span> <span class="n">value2</span><span class="o">....</span><span class="p">,</span> <span class="n">columnN</span> <span class="o">=</span> <span class="n">valueN</span>
+<span class="n">WHERE</span> <span class="p">[</span><span class="n">condition</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>ใช้สำหรับการปรับปรุงค่าของ Attributes</p>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">flights</span>
+    <span class="n">SET</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">430</span>
+    <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span>
+    <span class="n">AND</span> <span class="n">destination</span> <span class="o">=</span> <span class="s1">&#39;London&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># UPDATE flights</span>
+<span class="n">testdb3</span><span class="o">-</span><span class="c1"># SET duration = 430</span>
+<span class="n">testdb3</span><span class="o">-</span><span class="c1"># WHERE origin = &#39;New York&#39;</span>
+<span class="n">testdb3</span><span class="o">-</span><span class="c1"># AND destination = &#39;London&#39;;</span>
+<span class="n">UPDATE</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete">
+<h2>DELETE<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
+<p>รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">table_name</span>
+<span class="n">WHERE</span> <span class="p">[</span><span class="n">condition</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="limit">
+<h2>LIMIT<a class="headerlink" href="#limit" title="Permalink to this headline">¶</a></h2>
+<p>จำกัด จำนวนผลลัพท์ ที่ได้จาก query</p>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights LIMIT 2;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+<span class="p">(</span><span class="mi">2</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="order">
+<h2>ORDER<a class="headerlink" href="#order" title="Permalink to this headline">¶</a></h2>
+<p>เรียงลำดับผลลัพท์ โดย เลือก attribute เรียงจากน้อยไปหามาก ASC หรือเรียงจากมากไปหาน้อย DSC</p>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights ORDER BY duration ASC;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">London</span>      <span class="o">|</span>      <span class="mi">430</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">435</span>
+  <span class="mi">6</span> <span class="o">|</span> <span class="n">Lima</span>     <span class="o">|</span> <span class="n">New</span> <span class="n">York</span>    <span class="o">|</span>      <span class="mi">455</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+<span class="p">(</span><span class="mi">6</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights ORDER BY duration ASC LIMIT 3;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">London</span>      <span class="o">|</span>      <span class="mi">430</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">435</span>
+<span class="p">(</span><span class="mi">3</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights ORDER BY duration DESC;</span>
+ <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
+<span class="o">----+----------+-------------+----------</span>
+  <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
+  <span class="mi">3</span> <span class="o">|</span> <span class="n">Istanbul</span> <span class="o">|</span> <span class="n">Tokyo</span>       <span class="o">|</span>      <span class="mi">700</span>
+  <span class="mi">6</span> <span class="o">|</span> <span class="n">Lima</span>     <span class="o">|</span> <span class="n">New</span> <span class="n">York</span>    <span class="o">|</span>      <span class="mi">455</span>
+  <span class="mi">4</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">435</span>
+  <span class="mi">1</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">London</span>      <span class="o">|</span>      <span class="mi">430</span>
+  <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
+<span class="p">(</span><span class="mi">6</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="group-by">
+<h2>GROUP BY<a class="headerlink" href="#group-by" title="Permalink to this headline">¶</a></h2>
+<p>โดยส่วนมากใช้งานร่วมกับ aggregate fuction  SUM, COUNT , HAVE
+รูปแบบ sql syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">column</span><span class="o">-</span><span class="nb">list</span>
+<span class="n">FROM</span> <span class="n">table_name</span>
+<span class="n">WHERE</span> <span class="p">[</span> <span class="n">conditions</span> <span class="p">]</span>
+<span class="n">GROUP</span> <span class="n">BY</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="o">....</span><span class="n">columnN</span>
+<span class="n">ORDER</span> <span class="n">BY</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="o">....</span><span class="n">columnN</span>
+</pre></div>
+</div>
+<p>run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT origin FROM flights GROUP BY origin;</span>
+  <span class="n">origin</span>
+<span class="o">----------</span>
+ <span class="n">Shanghai</span>
+ <span class="n">Moscow</span>
+ <span class="n">Istanbul</span>
+ <span class="n">New</span> <span class="n">York</span>
+ <span class="n">Lima</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT origin,COUNT(*)  FROM flights GROUP BY origin;</span>
+  <span class="n">origin</span>  <span class="o">|</span> <span class="n">count</span>
+<span class="o">----------+-------</span>
+ <span class="n">Shanghai</span> <span class="o">|</span>     <span class="mi">1</span>
+ <span class="n">Moscow</span>   <span class="o">|</span>     <span class="mi">1</span>
+ <span class="n">Istanbul</span> <span class="o">|</span>     <span class="mi">1</span>
+ <span class="n">New</span> <span class="n">York</span> <span class="o">|</span>     <span class="mi">2</span>
+ <span class="n">Lima</span>     <span class="o">|</span>     <span class="mi">1</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT origin,COUNT(*)  FROM flights GROUP BY origin</span>
+<span class="n">testdb3</span><span class="o">-</span><span class="c1"># HAVING COUNT(*) &gt; 1;</span>
+  <span class="n">origin</span>  <span class="o">|</span> <span class="n">count</span>
+<span class="o">----------+-------</span>
+ <span class="n">New</span> <span class="n">York</span> <span class="o">|</span>     <span class="mi">2</span>
+<span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foreign-keys">
+<h2>Foreign Keys<a class="headerlink" href="#foreign-keys" title="Permalink to this headline">¶</a></h2>
+<p>พิจารณาตารางที่ได้เพิ่มเติม โค้ดสนามบิน</p>
+<img alt="_images/flights-code.png" src="_images/flights-code.png" />
+<p>เมื่อเราแยก ตารางออกมาได้ 2 ตารางดังนี้</p>
+<img alt="_images/flights-code-norm.png" src="_images/flights-code-norm.png" />
+<p>และเพิ่มเติมตารางผู้โดยสารที่โดยสายการบิน</p>
+<img alt="_images/flights-passengers.png" src="_images/flights-passengers.png" />
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>สร้างตาราง location, flight, passengers ดังนี้</dt>
+<dd><ul class="first last">
+<li>vim flight-passengers.sql</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="n">flights</span><span class="p">;</span>
+
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">locations</span> <span class="p">(</span>
+    <span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">code</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">name</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">flights</span> <span class="p">(</span>
+    <span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">origin_id</span> <span class="n">INTEGER</span> <span class="n">REFERENCES</span> <span class="n">locations</span><span class="p">,</span>
+    <span class="n">destination_id</span> <span class="n">INTEGER</span> <span class="n">REFERENCES</span> <span class="n">locations</span><span class="p">,</span>
+    <span class="n">duration</span> <span class="n">INTEGER</span> <span class="n">NOT</span> <span class="n">NULL</span>
+<span class="p">);</span>
+
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">passengers</span> <span class="p">(</span>
+    <span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">flight_id</span> <span class="n">INTEGER</span> <span class="n">REFERENCES</span> <span class="n">flights</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Insert ข้อมูลในฐานข้อมูล database</dt>
+<dd><ul class="first last">
+<li>สร้าง ไฟล์ <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">flight-data.sql</span></code> ด้วยข้อมูลด้านล่างนี้</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;JFK&#39;</span><span class="p">,</span><span class="s1">&#39;New York&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;PVG&#39;</span><span class="p">,</span><span class="s1">&#39;Shanghai&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;IST&#39;</span><span class="p">,</span><span class="s1">&#39;Istanbul&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;LHR&#39;</span><span class="p">,</span><span class="s1">&#39;London&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;SVO&#39;</span><span class="p">,</span><span class="s1">&#39;Moscow&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Lim&#39;</span><span class="p">,</span><span class="s1">&#39;Lima&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;CDG&#39;</span><span class="p">,</span><span class="s1">&#39;Paris&#39;</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;NRT&#39;</span><span class="p">,</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">);</span>
+
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin_id</span><span class="p">,</span> <span class="n">destination_id</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin_id</span><span class="p">,</span> <span class="n">destination_id</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin_id</span><span class="p">,</span> <span class="n">destination_id</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin_id</span><span class="p">,</span> <span class="n">destination_id</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin_id</span><span class="p">,</span> <span class="n">destination_id</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+    <span class="p">(</span><span class="n">origin_id</span><span class="p">,</span> <span class="n">destination_id</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
+
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Charlie&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Dave&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Erin&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Frank&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">passengers</span>
+    <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">flight_id</span><span class="p">)</span>
+    <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;Grace&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vagrant.html" class="btn btn-neutral float-right" title="Vagrant" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="postgres.html" class="btn btn-neutral" title="Install PostgreSQL 10 on CentOS 7" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
