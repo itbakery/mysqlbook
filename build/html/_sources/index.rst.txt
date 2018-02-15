@@ -16,6 +16,7 @@ Welcome to Mysql Tutorial's documentation!
    postgres-shell
    vagrant
    firewall
+   install-mysql-windows
 
 Indices and tables
 ==================
