@@ -1,0 +1,391 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Example2: Employee Database &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="prev" title="Example1: Sample Database" href="example1-sampledatabase.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example2: Employee Database</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Example2: Employee Database</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/example2-employee.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="example2-employee-database">
+<h1>Example2: Employee Database<a class="headerlink" href="#example2-employee-database" title="Permalink to this headline">¶</a></h1>
+<p>้อ้างอิงจาก <a class="reference external" href="https://dev.mysql.com/doc/employee/en/employees-installation.html">https://dev.mysql.com/doc/employee/en/employees-installation.html</a></p>
+<p>พิจารณา ตารางที่เกี่ยวข้องกับ พนักงานดังนี้</p>
+<img alt="_images/SampleEmployees.png" src="_images/SampleEmployees.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Prepare</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Download</dt>
+<dd><ul class="first last">
+<li>test_db-master.zip : <a class="reference external" href="_static/code/test_db-master.zip">test_db-master.zip</a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>shell&gt; unzip test_db-master.zip
+shell&gt; <span class="nb">cd</span> test_db-master
+</pre></div>
+</div>
+</div>
+<p>หลังจากทำการ Download และ unzip เรียบร้อย ก็ให้โหลดเข้าสู่ฐานข้อมูล</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shell&gt; mysql -t &lt; employees.sql
+</pre></div>
+</div>
+<ul class="simple">
+<li>ตาราง employees</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE employees <span class="o">(</span>
+    emp_no      INT             NOT NULL,  -- UNSIGNED AUTO_INCREMENT??
+    birth_date  DATE            NOT NULL,
+    first_name  VARCHAR<span class="o">(</span><span class="m">14</span><span class="o">)</span>     NOT NULL,
+    last_name   VARCHAR<span class="o">(</span><span class="m">16</span><span class="o">)</span>     NOT NULL,
+    gender      ENUM <span class="o">(</span><span class="s1">&#39;M&#39;</span>,<span class="s1">&#39;F&#39;</span><span class="o">)</span>  NOT NULL,  -- Enumeration of either <span class="s1">&#39;M&#39;</span> or <span class="s1">&#39;F&#39;</span>
+    hire_date   DATE            NOT NULL,
+    PRIMARY KEY <span class="o">(</span>emp_no<span class="o">)</span>                   -- Index built automatically on primary-key column
+                                           -- INDEX <span class="o">(</span>first_name<span class="o">)</span>
+                                           -- INDEX <span class="o">(</span>last_name<span class="o">)</span>
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ตาราง departments</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE departments <span class="o">(</span>
+    dept_no     CHAR<span class="o">(</span><span class="m">4</span><span class="o">)</span>         NOT NULL,  -- in the form of <span class="s1">&#39;dxxx&#39;</span>
+    dept_name   VARCHAR<span class="o">(</span><span class="m">40</span><span class="o">)</span>     NOT NULL,
+    PRIMARY KEY <span class="o">(</span>dept_no<span class="o">)</span>,                 -- Index built automatically
+    UNIQUE  KEY <span class="o">(</span>dept_name<span class="o">)</span>                -- Build INDEX on this unique-value column
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ตาราง dept_emp</li>
+</ul>
+<dl class="docutils">
+<dt>ตารางเชื่อม ความสัมพันธ์ many-to-many relationship ระหว่าง employees และ departments.</dt>
+<dd><ul class="first last simple">
+<li>department has many employees</li>
+<li>employee can belong to different department at different dates (from_date) - (to_date)</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE dept_emp <span class="o">(</span>
+    emp_no      INT         NOT NULL,
+    dept_no     CHAR<span class="o">(</span><span class="m">4</span><span class="o">)</span>     NOT NULL,
+    from_date   DATE        NOT NULL,
+    to_date     DATE        NOT NULL,
+    KEY         <span class="o">(</span>emp_no<span class="o">)</span>,   -- Build INDEX on this non-unique-value column
+    KEY         <span class="o">(</span>dept_no<span class="o">)</span>,  -- Build INDEX on this non-unique-value column
+    FOREIGN KEY <span class="o">(</span>emp_no<span class="o">)</span> REFERENCES employees <span class="o">(</span>emp_no<span class="o">)</span> ON DELETE CASCADE,
+           -- Cascade DELETE from parent table <span class="s1">&#39;employee&#39;</span> to this child table
+           -- If an emp_no is deleted from parent <span class="s1">&#39;employee&#39;</span>, all records
+           --  involving this emp_no in this child table are also deleted
+           -- ON UPDATE CASCADE??
+    FOREIGN KEY <span class="o">(</span>dept_no<span class="o">)</span> REFERENCES departments <span class="o">(</span>dept_no<span class="o">)</span> ON DELETE CASCADE,
+           -- ON UPDATE CASCADE??
+    PRIMARY KEY <span class="o">(</span>emp_no, dept_no<span class="o">)</span>
+           -- Might not be unique?? Need to include from_date
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>foreign keys มีการระบุ ON DELETE reference_action CASCADE หมายความว่า หากมีค่าของ key-value จาก ตาราง parent table (employee และ department) ถูกลบ จะมีผลให้ ทุก records ในตาราง dept_emp ตารางลูก (child table) ที่มี key-value ตรงกันก็จะถูกลบไปด้วย</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>ON DELETE OPTION</p>
+<ol class="last arabic simple">
+<li>ON DELETE RESTRICTED กำหนดให้เป็นค่า Default ของ parent child relation หมายความว่า Database ไม่อนุญาตให้มีการลบ parent record ถ้าหากมีข้อมูลอยู่ใน child records</li>
+<li>ON DELETE CASCADE หากมีการลบข้อมูลใน parent record ทำให้ Database จะทำการส่งคำสั่งไปลบ record ใน child record เช่นกัน</li>
+<li>ON DELETE SET NULL  จะไม่ลบข้อมูล record ใน class ลูก แต่จะแทนค่าด้วย ค่าว่าง <code class="docutils literal notranslate"><span class="pre">NULL</span></code> แทน foreign key ของ parent ที่ถูกลบไป</li>
+</ol>
+</div>
+<ul class="simple">
+<li>ตาราง dept_manager</li>
+</ul>
+<p>ทำหน้าที่เป็นตารางเชื่อม many-to-many ระหว่างตาราง employee และตาราง dept_emp</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE dept_manager <span class="o">(</span>
+   dept_no      CHAR<span class="o">(</span><span class="m">4</span><span class="o">)</span>  NOT NULL,
+   emp_no       INT      NOT NULL,
+   from_date    DATE     NOT NULL,
+   to_date      DATE     NOT NULL,
+   KEY         <span class="o">(</span>emp_no<span class="o">)</span>,
+   KEY         <span class="o">(</span>dept_no<span class="o">)</span>,
+   FOREIGN KEY <span class="o">(</span>emp_no<span class="o">)</span>  REFERENCES employees <span class="o">(</span>emp_no<span class="o">)</span>    ON DELETE CASCADE,
+                                  -- ON UPDATE CASCADE??
+   FOREIGN KEY <span class="o">(</span>dept_no<span class="o">)</span> REFERENCES departments <span class="o">(</span>dept_no<span class="o">)</span> ON DELETE CASCADE,
+   PRIMARY KEY <span class="o">(</span>emp_no, dept_no<span class="o">)</span>  -- might not be unique?? Need from_date
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ตาราง title</li>
+</ul>
+<p>ทำหน้าที่เป็นตารางเชื่อม  one-to-many ระหว่างตาราง employee และ ตาราง title โดยการออกแบบกำหนดให้พนักงาน (Employee) สามารถมีได้หลายตำแหน่งขึ้นกับเวลาที่แตกต่างกัน โดยมี  emp_no เป็น foreign key กลับไปยัง ตาราง employee</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE titles <span class="o">(</span>
+    emp_no      INT          NOT NULL,
+    title       VARCHAR<span class="o">(</span><span class="m">50</span><span class="o">)</span>  NOT NULL,
+    from_date   DATE         NOT NULL,
+    to_date     DATE,
+    KEY         <span class="o">(</span>emp_no<span class="o">)</span>,
+    FOREIGN KEY <span class="o">(</span>emp_no<span class="o">)</span> REFERENCES employees <span class="o">(</span>emp_no<span class="o">)</span> ON DELETE CASCADE,
+                         -- ON UPDATE CASCADE??
+    PRIMARY KEY <span class="o">(</span>emp_no, title, from_date<span class="o">)</span>
+       -- This ensures unique combination.
+       -- An employee may hold the same title but at different period
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ตาราง Salary</li>
+</ul>
+<p>มีโครงสร้างคล้ายกับตาราง titles เป็นตารางเชื่อมความสัมพันธ์ แบบ one-to-many เชื่อมระหว่าง ตาราง employee และ ตาราง  salaries</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE salaries <span class="o">(</span>
+    emp_no      INT    NOT NULL,
+    salary      INT    NOT NULL,
+    from_date   DATE   NOT NULL,
+    to_date     DATE   NOT NULL,
+    KEY         <span class="o">(</span>emp_no<span class="o">)</span>,
+    FOREIGN KEY <span class="o">(</span>emp_no<span class="o">)</span> REFERENCES employees <span class="o">(</span>emp_no<span class="o">)</span> ON DELETE CASCADE,
+    PRIMARY KEY <span class="o">(</span>emp_no, from_date<span class="o">)</span>
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="example1-sampledatabase.html" class="btn btn-neutral" title="Example1: Sample Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

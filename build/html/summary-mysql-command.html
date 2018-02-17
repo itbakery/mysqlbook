@@ -1,0 +1,418 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Summary MySQL command &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="next" title="Example1: Sample Database" href="example1-sampledatabase.html"/>
+        <link rel="prev" title="Install MySQL Workbench on windows 10" href="install-mysql-workbench-win.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Summary MySQL command</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/summary-mysql-command.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="summary-mysql-command">
+<h1>Summary MySQL command<a class="headerlink" href="#summary-mysql-command" title="Permalink to this headline">¶</a></h1>
+<p>สรุปคำสั่งของ mysql เพื่อใช้สำหรับการอ้างอ้างการเรียนรู้ ได้ดังนี้</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">--</span></code> แทน comment SQL จะไม่นำมาประมวลผล</li>
+</ul>
+<ol class="arabic">
+<li><p class="first">Database Level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DROP DATABASE databaseName                 -- Delete the database (irrecoverable!)
+DROP DATABASE IF EXISTS databaseName       -- Delete if it exists
+CREATE DATABASE databaseName               -- Create a new database
+CREATE DATABASE IF NOT EXISTS databaseName -- Create only if it does not exists
+SHOW DATABASES                             -- Show all the databases in this server
+USE databaseName                           -- Set the default (current) database
+SELECT DATABASE()                          -- Show the default database
+SHOW CREATE DATABASE databaseName          -- Show the CREATE DATABASE statement
+</pre></div>
+</div>
+</li>
+<li><p class="first">Table-level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="n">EXISTS</span><span class="p">]</span> <span class="n">tableName</span><span class="p">,</span> <span class="o">...</span>
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span><span class="p">]</span> <span class="n">tableName</span> <span class="p">(</span>
+   <span class="n">columnName</span> <span class="n">columnType</span> <span class="n">columnAttribute</span><span class="p">,</span> <span class="o">...</span>
+   <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">(</span><span class="n">columnName</span><span class="p">),</span>
+   <span class="n">FOREIGN</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">columnNmae</span><span class="p">)</span> <span class="n">REFERENCES</span> <span class="n">tableName</span> <span class="p">(</span><span class="n">columnNmae</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">SHOW</span> <span class="n">TABLES</span>                <span class="o">--</span> <span class="n">Show</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">tables</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">default</span> <span class="n">database</span>
+<span class="n">DESCRIBE</span><span class="o">|</span><span class="n">DESC</span> <span class="n">tableName</span>    <span class="o">--</span> <span class="n">Describe</span> <span class="n">the</span> <span class="n">details</span> <span class="k">for</span> <span class="n">a</span> <span class="n">table</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">tableName</span> <span class="o">...</span>  <span class="o">--</span> <span class="n">Modify</span> <span class="n">a</span> <span class="n">table</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">ADD</span> <span class="n">COLUMN</span> <span class="ow">and</span> <span class="n">DROP</span> <span class="n">COLUMN</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">tableName</span> <span class="n">ADD</span> <span class="n">columnDefinition</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">tableName</span> <span class="n">DROP</span> <span class="n">columnName</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">tableName</span> <span class="n">ADD</span> <span class="n">FOREIGN</span> <span class="n">KEY</span> <span class="p">(</span><span class="n">columnNmae</span><span class="p">)</span> <span class="n">REFERENCES</span> <span class="n">tableName</span> <span class="p">(</span><span class="n">columnNmae</span><span class="p">)</span>
+<span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">tableName</span> <span class="n">DROP</span> <span class="n">FOREIGN</span> <span class="n">KEY</span> <span class="n">constraintName</span>
+<span class="n">SHOW</span> <span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">tableName</span>        <span class="o">--</span> <span class="n">Show</span> <span class="n">the</span> <span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">statement</span> <span class="k">for</span> <span class="n">this</span> <span class="n">tableName</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Row-level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">Row</span><span class="o">-</span><span class="n">Level</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">tableName</span>
+   <span class="n">VALUES</span> <span class="p">(</span><span class="n">column1Value</span><span class="p">,</span> <span class="n">column2Value</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>               <span class="o">--</span> <span class="n">Insert</span> <span class="n">on</span> <span class="nb">all</span> <span class="n">Columns</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">tableName</span>
+   <span class="n">VALUES</span> <span class="p">(</span><span class="n">column1Value</span><span class="p">,</span> <span class="n">column2Value</span><span class="p">,</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span>          <span class="o">--</span> <span class="n">Insert</span> <span class="n">multiple</span> <span class="n">rows</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">tableName</span> <span class="p">(</span><span class="n">column1Name</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">columnNName</span><span class="p">)</span>
+   <span class="n">VALUES</span> <span class="p">(</span><span class="n">column1Value</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">columnNValue</span><span class="p">)</span>              <span class="o">--</span> <span class="n">Insert</span> <span class="n">on</span> <span class="n">selected</span> <span class="n">Columns</span>
+<span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">tableName</span> <span class="n">WHERE</span> <span class="n">criteria</span>
+<span class="n">UPDATE</span> <span class="n">tableName</span> <span class="n">SET</span> <span class="n">columnName</span> <span class="o">=</span> <span class="n">expr</span><span class="p">,</span> <span class="o">...</span> <span class="n">WHERE</span> <span class="n">criteria</span>
+<span class="n">SELECT</span> <span class="o">*</span> <span class="o">|</span> <span class="n">column1Name</span> <span class="n">AS</span> <span class="n">alias1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">columnNName</span> <span class="n">AS</span> <span class="n">aliasN</span>
+   <span class="n">FROM</span> <span class="n">tableName</span>
+   <span class="n">WHERE</span> <span class="n">criteria</span>
+   <span class="n">GROUP</span> <span class="n">BY</span> <span class="n">columnName</span>
+   <span class="n">ORDER</span> <span class="n">BY</span> <span class="n">columnName</span> <span class="n">ASC</span><span class="o">|</span><span class="n">DESC</span><span class="p">,</span> <span class="o">...</span>
+   <span class="n">HAVING</span> <span class="n">groupConstraints</span>
+   <span class="n">LIMIT</span> <span class="n">count</span> <span class="o">|</span> <span class="n">offset</span> <span class="n">count</span>
+
+<span class="o">--</span> <span class="n">Others</span>
+<span class="n">SHOW</span> <span class="n">WARNINGS</span><span class="p">;</span>   <span class="o">--</span> <span class="n">Show</span> <span class="n">the</span> <span class="n">warnings</span> <span class="n">of</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">statement</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>มาเริ่มต้นสร้าง ฐานข้อมูลชื่อ southwind</p>
+<img alt="_images/southwind.PNG" src="_images/southwind.PNG" />
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; SELECT version<span class="o">()</span>
+
+mysql&gt; CREATE DATABASE southwind<span class="p">;</span>
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.03 sec<span class="o">)</span>
+
+mysql&gt; DROP DATABASE southwind<span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.11 sec<span class="o">)</span>
+
+mysql&gt; CREATE DATABASE IF NOT EXISTS southwind<span class="p">;</span>
+Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.01 sec<span class="o">)</span>
+
+mysql&gt; DROP DATABASE IF EXISTS southwind<span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ให้ระวังคำสั่ง `` SQL DROP`` เนื่องจาก ไม่สามารถเรียกคืนได้ sql ไม่มีคำสั่ง undo</li>
+<li>แสดง ฐานข้อมูล เราสามารถใช้ <code class="docutils literal notranslate"><span class="pre">\g</span></code> (slash g) หรือ <code class="docutils literal notranslate"><span class="pre">;</span></code> semicolon เป็นการบอกให้ sql รับคำสั่งไปประมวลผล</li>
+<li>ใช้ <code class="docutils literal notranslate"><span class="pre">--</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">and</span> <span class="pre">*/</span></code> เป็นการ แสดง comment</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; CREATE DATABASE IF NOT EXISTS southwind<span class="p">;</span>
+
+mysql&gt; SHOW CREATE DATABASE southwind <span class="se">\G</span>
+*************************** <span class="m">1</span>. row ***************************
+       Database: southwind
+Create Database: CREATE DATABASE <span class="sb">`</span>southwind<span class="sb">`</span> /*!40100 DEFAULT CHARACTER SET latin1 */
+</pre></div>
+</div>
+<p>เมื่อสร้าง ฐานข้อมูลแล้วก็จะมีการกำหนดการใช้งานให้เป็น ฐานข้อมูลหลักหรือ
+default database ด้วยคำสั่ง  <code class="docutils literal notranslate"><span class="pre">USE</span> <span class="pre">databasename</span></code> ทำให้สามารถอ้างอิง ตารางได้โดยตรง  โดยปรกติหากเราไม่ได้กำหนดค่าของ default database จะต้องอ้างอิงตารางด้วย fully-qualified <code class="docutils literal notranslate"><span class="pre">databaseName.tableName</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-- Set <span class="s2">&quot;southwind&quot;</span> as the default database so as to reference its table directly.
+mysql&gt; USE southwind<span class="p">;</span>
+Database changed
+
+-- Show the current <span class="o">(</span>default<span class="o">)</span> database
+mysql&gt; SELECT DATABASE<span class="o">()</span><span class="p">;</span>
++------------+
+<span class="p">|</span> DATABASE<span class="o">()</span> <span class="p">|</span>
++------------+
+<span class="p">|</span> southwind  <span class="p">|</span>
++------------+
+
+-- Show all the tables in the current database.
+-- <span class="s2">&quot;southwind&quot;</span> has no table <span class="o">(</span>empty <span class="nb">set</span><span class="o">)</span>.
+mysql&gt; SHOW TABLES<span class="p">;</span>
+Empty <span class="nb">set</span> <span class="o">(</span><span class="m">0</span>.00 sec<span class="o">)</span>
+</pre></div>
+</div>
+<p>สร้างตาราง ภายในฐานข้อมูล</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-- Create the table <span class="s2">&quot;products&quot;</span>. Read <span class="s2">&quot;explanations&quot;</span> below <span class="k">for</span> the column defintions
+mysql&gt; CREATE TABLE IF NOT EXISTS products <span class="o">(</span>
+         productID    INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+         productCode  CHAR<span class="o">(</span><span class="m">3</span><span class="o">)</span>       NOT NULL DEFAULT <span class="s1">&#39;&#39;</span>,
+         name         VARCHAR<span class="o">(</span><span class="m">30</span><span class="o">)</span>   NOT NULL DEFAULT <span class="s1">&#39;&#39;</span>,
+         quantity     INT UNSIGNED  NOT NULL DEFAULT <span class="m">0</span>,
+         price        DECIMAL<span class="o">(</span><span class="m">7</span>,2<span class="o">)</span>  NOT NULL DEFAULT <span class="m">99999</span>.99,
+         PRIMARY KEY  <span class="o">(</span>productID<span class="o">)</span>
+       <span class="o">)</span><span class="p">;</span>
+Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span class="m">0</span>.08 sec<span class="o">)</span>
+
+-- Show all the tables to confirm that the <span class="s2">&quot;products&quot;</span> table has been created
+mysql&gt; SHOW TABLES<span class="p">;</span>
++---------------------+
+<span class="p">|</span> Tables_in_southwind <span class="p">|</span>
++---------------------+
+<span class="p">|</span> products            <span class="p">|</span>
++---------------------+
+
+-- Describe the fields <span class="o">(</span>columns<span class="o">)</span> of the <span class="s2">&quot;products&quot;</span> table
+mysql&gt; DESCRIBE products<span class="p">;</span>
++-------------+------------------+------+-----+------------+----------------+
+<span class="p">|</span> Field       <span class="p">|</span> Type             <span class="p">|</span> Null <span class="p">|</span> Key <span class="p">|</span> Default    <span class="p">|</span> Extra          <span class="p">|</span>
++-------------+------------------+------+-----+------------+----------------+
+<span class="p">|</span> productID   <span class="p">|</span> int<span class="o">(</span><span class="m">10</span><span class="o">)</span> unsigned <span class="p">|</span> NO   <span class="p">|</span> PRI <span class="p">|</span> NULL       <span class="p">|</span> auto_increment <span class="p">|</span>
+<span class="p">|</span> productCode <span class="p">|</span> char<span class="o">(</span><span class="m">3</span><span class="o">)</span>          <span class="p">|</span> NO   <span class="p">|</span>     <span class="p">|</span>            <span class="p">|</span>                <span class="p">|</span>
+<span class="p">|</span> name        <span class="p">|</span> varchar<span class="o">(</span><span class="m">30</span><span class="o">)</span>      <span class="p">|</span> NO   <span class="p">|</span>     <span class="p">|</span>            <span class="p">|</span>                <span class="p">|</span>
+<span class="p">|</span> quantity    <span class="p">|</span> int<span class="o">(</span><span class="m">10</span><span class="o">)</span> unsigned <span class="p">|</span> NO   <span class="p">|</span>     <span class="p">|</span> <span class="m">0</span>          <span class="p">|</span>                <span class="p">|</span>
+<span class="p">|</span> price       <span class="p">|</span> decimal<span class="o">(</span><span class="m">7</span>,2<span class="o">)</span>     <span class="p">|</span> NO   <span class="p">|</span>     <span class="p">|</span> <span class="m">99999</span>.99   <span class="p">|</span>                <span class="p">|</span>
++-------------+------------------+------+-----+------------+----------------+
+
+-- Show the <span class="nb">complete</span> CREATE TABLE statement used by MySQL to create this table
+mysql&gt; SHOW CREATE TABLE products <span class="se">\G</span>
+*************************** <span class="m">1</span>. row ***************************
+       Table: products
+Create Table:
+CREATE TABLE <span class="sb">`</span>products<span class="sb">`</span> <span class="o">(</span>
+  <span class="sb">`</span>productID<span class="sb">`</span>    int<span class="o">(</span><span class="m">10</span><span class="o">)</span> unsigned  NOT NULL AUTO_INCREMENT,
+  <span class="sb">`</span>productCode<span class="sb">`</span>  char<span class="o">(</span><span class="m">3</span><span class="o">)</span>           NOT NULL DEFAULT <span class="s1">&#39;&#39;</span>,
+  <span class="sb">`</span>name<span class="sb">`</span>         varchar<span class="o">(</span><span class="m">30</span><span class="o">)</span>       NOT NULL DEFAULT <span class="s1">&#39;&#39;</span>,
+  <span class="sb">`</span>quantity<span class="sb">`</span>     int<span class="o">(</span><span class="m">10</span><span class="o">)</span> unsigned  NOT NULL DEFAULT <span class="s1">&#39;0&#39;</span>,
+  <span class="sb">`</span>price<span class="sb">`</span>        decimal<span class="o">(</span><span class="m">7</span>,2<span class="o">)</span>      NOT NULL DEFAULT <span class="s1">&#39;99999.99&#39;</span>,
+  PRIMARY KEY <span class="o">(</span><span class="sb">`</span>productID<span class="sb">`</span><span class="o">)</span>
+<span class="o">)</span> <span class="nv">ENGINE</span><span class="o">=</span>InnoDB DEFAULT <span class="nv">CHARSET</span><span class="o">=</span>latin1
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>จากตารางมีการสร้าง 5 colume</p>
+<ul class="last simple">
+<li>productID  กำหนดเป็น INT UNSIGNED จำนวนเต็มที่ไม่เป็นลบ non-negative integer</li>
+<li>productCode กำหนดเป็น CHAR(3) อักขระ ขนาด 3 ตัวอักษร</li>
+<li>name กำหนดเป็น CHAR(30) อักขระ ขนาด 30 ตัวอักษร</li>
+<li>quantity  กำหนดเป็น INT UNSIGNED</li>
+<li>price กำหนดเป็น DECIMAL(10,2) ตัวเลขขนาดทศนิยมจำนวน 2 หลัก นิยมกำหนดให้กับการเก็บข้อมูลที่เป็นจำนวนเงิน</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="example1-sampledatabase.html" class="btn btn-neutral float-right" title="Example1: Sample Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install-mysql-workbench-win.html" class="btn btn-neutral" title="Install MySQL Workbench on windows 10" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

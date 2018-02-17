@@ -17,6 +17,10 @@ Welcome to Mysql Tutorial's documentation!
    vagrant
    firewall
    install-mysql-windows
+   install-mysql-workbench-win
+   summary-mysql-command
+   example1-sampledatabase
+   example2-employee
 
 Indices and tables
 ==================
