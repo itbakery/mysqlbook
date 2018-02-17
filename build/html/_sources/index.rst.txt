@@ -21,6 +21,7 @@ Welcome to Mysql Tutorial's documentation!
    summary-mysql-command
    example1-sampledatabase
    example2-employee
+   mysql-cluster
 
 Indices and tables
 ==================

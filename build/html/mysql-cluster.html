@@ -1,0 +1,524 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Install Mysql cluster &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="prev" title="Example2: Employee Database" href="example2-employee.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Install Mysql cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ขั้นตอนดังต่อไปนี้</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Install Mysql cluster</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mysql-cluster.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="install-mysql-cluster">
+<h1>Install Mysql cluster<a class="headerlink" href="#install-mysql-cluster" title="Permalink to this headline">¶</a></h1>
+<p>เรียนรู้การติดตั้ง mysql-cluster โดยการติดตั้ง vagrantfile ด้านล่างนี้</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ mkdir cluster
+$ vim Vagrantfile
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span># -*- mode: ruby -*-
+# vi: set ft=ruby :
+ 
+# All Vagrant configuration is done below. The &quot;2&quot; in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don&#39;t change it unless you know what
+# you&#39;re doing.
+ 
+Vagrant.configure(2) do |config|
+    config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, type:&quot;virtualbox&quot;
+    if Vagrant.has_plugin?(&quot;vagrant-timezone&quot;)
+        config.timezone.value = &quot;Asia/Bangkok&quot;
+    end
+    config.vm.define &quot;node1&quot; do |node|
+        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.hostname = &quot;mysql-node1&quot;
+        node.vm.network :private_network, ip: &quot;10.1.0.11&quot;
+    end
+     
+    config.vm.define &quot;node2&quot; do |node|
+        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.hostname = &quot;mysql-node2&quot;
+        node.vm.network :private_network, ip: &quot;10.1.0.12&quot;
+    end
+     
+    config.vm.define &quot;node3&quot; do |node|
+        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.hostname = &quot;mysql-node3&quot;
+        node.vm.network :private_network, ip: &quot;10.1.0.13&quot;
+    end
+     
+    config.vm.define &quot;web&quot; do |node|
+        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.hostname = &quot;mysql-web&quot;
+        node.vm.network :private_network, ip: &quot;10.1.0.10&quot;
+    end
+end
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vagrant up
+$ vagrant status
+
+Current machine states:
+
+node1                     running (virtualbox)
+node2                     running (virtualbox)
+node3                     running (virtualbox)
+web                       running (virtualbox)
+
+$ vagrant ssh node1 -c &quot;hostname -s&quot;
+$ vagrant ssh node2 -c &quot;hostname -s&quot;
+$ vagrant ssh node3 -c &quot;hostname -s&quot;
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>ขั้นตอนดังต่อไปนี้<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>(แนะนำ ให้เปิดด้วย 3 terminal)
+0. ให้ทำการแก้ไข local ให้กับทุกครบทุกเครื่อง  node1, node2, node3, web</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">login</span> <span class="n">vagrant</span>  <span class="n">และเปลี่ยนเป็น</span> <span class="n">root</span> <span class="n">user</span><span class="p">)</span>
+<span class="n">vagrant</span> <span class="n">ssh</span> <span class="n">node1</span>
+<span class="n">sudo</span> <span class="n">su</span> <span class="o">-</span>
+</pre></div>
+</div>
+<p>&nbsp;ให้ทำการข้างต้นใน node2,node3</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+
+<span class="mf">10.1</span><span class="o">.</span><span class="mf">0.11</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node1</span>
+<span class="mf">10.1</span><span class="o">.</span><span class="mf">0.12</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node2</span>
+<span class="mf">10.1</span><span class="o">.</span><span class="mf">0.13</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node3</span>
+
+<span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
+<span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">LC_ALL</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+</pre></div>
+</div>
+<p>1. เพิ่ม &nbsp;repository ให้กับทุกครบทุกเครื่อง  node1, node2, node3, web</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">yum</span><span class="o">.</span><span class="n">repos</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">galera</span><span class="o">.</span><span class="n">repo</span>
+
+<span class="p">[</span><span class="n">galera</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">Galera</span>
+<span class="n">baseurl</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">releases</span><span class="o">.</span><span class="n">galeracluster</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">galera</span><span class="o">-</span><span class="mi">3</span><span class="o">/</span><span class="n">centos</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span>
+<span class="n">gpgkey</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">releases</span><span class="o">.</span><span class="n">galeracluster</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">GPG</span><span class="o">-</span><span class="n">KEY</span><span class="o">-</span><span class="n">galeracluster</span><span class="o">.</span><span class="n">com</span>
+<span class="n">gpgcheck</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">[</span><span class="n">mysql</span><span class="o">-</span><span class="n">wsrep</span><span class="p">]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">MySQL</span><span class="o">-</span><span class="n">wsrep</span>
+<span class="n">baseurl</span> <span class="o">=</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">releases</span><span class="o">.</span><span class="n">galeracluster</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mysql</span><span class="o">-</span><span class="n">wsrep</span><span class="o">-</span><span class="mf">5.7</span><span class="o">/</span><span class="n">centos</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span>
+<span class="n">gpgkey</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">releases</span><span class="o">.</span><span class="n">galeracluster</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">GPG</span><span class="o">-</span><span class="n">KEY</span><span class="o">-</span><span class="n">galeracluster</span><span class="o">.</span><span class="n">com</span>
+<span class="n">gpgcheck</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">update</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>2. &nbsp;ติดตั้ง package</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">galera</span><span class="o">-</span><span class="mi">3</span> <span class="n">mysql</span><span class="o">-</span><span class="n">wsrep</span><span class="o">-</span><span class="mf">5.7</span> <span class="n">rsync</span> <span class="n">lsof</span> <span class="n">policycoreutils</span><span class="o">-</span><span class="n">python</span> <span class="n">firewalld</span>
+<span class="n">reboot</span>
+</pre></div>
+</div>
+<p>3. เริ่มต้น service</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">enable</span> <span class="n">mysqld</span>
+<span class="n">systemctl</span> <span class="n">start</span> <span class="n">mysqld</span>
+<span class="n">systemctl</span> <span class="n">enable</span> <span class="n">firewalld</span>
+<span class="n">systemctl</span> <span class="n">start</span> <span class="n">firewalld</span>
+</pre></div>
+</div>
+<p>4. กำหนด firewall</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">mysql</span> <span class="o">--</span><span class="n">permanent</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="o">/</span><span class="n">tcp</span> <span class="o">--</span><span class="n">permanent</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">4444</span><span class="o">/</span><span class="n">tcp</span> <span class="o">--</span><span class="n">permanent</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">4567</span><span class="o">/</span><span class="n">tcp</span> <span class="o">--</span><span class="n">permanent</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">4567</span><span class="o">/</span><span class="n">udp</span> <span class="o">--</span><span class="n">permanent</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">4568</span><span class="o">/</span><span class="n">tcp</span> <span class="o">--</span><span class="n">permanent</span>
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">reload</span>
+</pre></div>
+</div>
+<p>5. ตั้งค่า SE Linux</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">4567</span>
+<span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="mi">4567</span>
+<span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">456</span>
+<span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">4444</span>
+<span class="n">semanage</span> <span class="n">permissive</span> <span class="o">-</span><span class="n">a</span> <span class="n">mysqld_t</span>
+</pre></div>
+</div>
+<p>6. backup file /etc/my.cnf &nbsp;และเพิ่ม ค่า config ให้เป็น cluster</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">cnf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">cnf</span><span class="o">.</span><span class="n">bak</span>
+<span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="o">.</span><span class="n">cnf</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">[</span>mysqld<span class="o">]</span>
+<span class="nv">datadir</span><span class="o">=</span>/var/lib/mysql
+<span class="nv">socket</span><span class="o">=</span>/var/lib/mysql/mysql.sock
+<span class="nv">user</span><span class="o">=</span>mysql
+<span class="nv">binlog_format</span><span class="o">=</span>ROW
+bind-address<span class="o">=</span><span class="m">0</span>.0.0.0
+<span class="nv">default_storage_engine</span><span class="o">=</span>innodb
+<span class="nv">innodb_autoinc_lock_mode</span><span class="o">=</span><span class="m">2</span>
+<span class="nv">innodb_flush_log_at_trx_commit</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">innodb_buffer_pool_size</span><span class="o">=</span>122M
+<span class="nv">wsrep_provider</span><span class="o">=</span>/usr/lib64/galera-3/libgalera_smm.so
+<span class="nv">wsrep_provider_options</span><span class="o">=</span><span class="s2">&quot;gcache.size=300M; gcache.page_size=300M&quot;</span>
+<span class="nv">wsrep_cluster_name</span><span class="o">=</span><span class="s2">&quot;galera_cluster1&quot;</span>
+<span class="nv">wsrep_cluster_address</span><span class="o">=</span><span class="s2">&quot;gcomm://10.1.0.11:3306,10.1.0.12:3306,10.1.0.13:3306&quot;</span>
+<span class="nv">wsrep_sst_method</span><span class="o">=</span>rsync
+<span class="nv">server_id</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">wsrep_node_address</span><span class="o">=</span><span class="s2">&quot;10.1.0.11&quot;</span>
+<span class="nv">wsrep_node_name</span><span class="o">=</span><span class="s2">&quot;mysql-node1&quot;</span>
+
+<span class="o">[</span>mysql_safe<span class="o">]</span>
+log-error<span class="o">=</span>/var/log/mysqld.log
+pid-file<span class="o">=</span>/var/run/mysqld/mysqld.pid
+</pre></div>
+</td></tr></table></div>
+<p>&nbsp;จากขั้นตอนด้านบน จะเป็นของเครื่อง mysql-node1 (10.1.0.11) &nbsp;ให้ทำการข้างต้นใน node2,node3</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">สำหรับเครื่อง</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node2</span>
+
+<span class="n">wsrep_node_address</span><span class="o">=</span><span class="s2">&quot;10.1.0.12&quot;</span>
+<span class="n">wsrep_node_name</span><span class="o">=</span><span class="s2">&quot;mysql-node2&quot;</span>
+
+<span class="n">สำหรับเครื่อง</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node3</span>
+
+<span class="n">wsrep_node_address</span><span class="o">=</span><span class="s2">&quot;10.1.0.13&quot;</span>
+<span class="n">wsrep_node_name</span><span class="o">=</span><span class="s2">&quot;mysql-node3&quot;</span>
+</pre></div>
+</div>
+<p>7. &nbsp;สร้าง log</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">mysqld</span><span class="o">.</span><span class="n">log</span>
+<span class="n">chown</span> <span class="n">mysql</span><span class="p">:</span><span class="n">mysql</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">mysqld</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>8. MySQl cluster
+เริ่มต้น ที่ โหนด mysql-node1</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mysqld_bootstrap</span>
+</pre></div>
+</div>
+<p>9. Temporary password &nbsp;ของ MySQl</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>2018-02-17T09:26:48.024883Z 1 [Note] A temporary password is generated for root@localhost: oldfb7ed!j7X
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li>เปลี่ยน password</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span>/usr/bin/mysql_secure_installation
+Securing the MySQL server deployment.
+
+Enter password for user root:
+
+The existing password for the user account root has expired. Please set a new password.
+
+New password:
+
+Re-enter new password:
+Sorry, passwords do not match.
+
+New password:
+
+Re-enter new password:
+The &#39;validate_password&#39; plugin is installed on the server.
+The subsequent steps will run with the existing configuration
+of the plugin.
+Using existing password for root.
+
+Estimated strength of the password: 100
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : no
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : no
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>Normally, root should only be allowed to connect from
+&#39;localhost&#39;. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>By default, MySQL comes with a database named &#39;test&#39; that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) :
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">journalctl</span> <span class="o">-</span><span class="n">u</span> <span class="n">mysql</span>
+
+<span class="p">(</span><span class="n">port</span> <span class="mi">4567</span> <span class="ow">is</span> <span class="n">actively</span> <span class="n">listening</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">replication</span><span class="p">)</span>
+<span class="n">lsof</span> <span class="o">-</span><span class="n">i</span><span class="p">:</span><span class="mi">4567</span>
+
+<span class="p">(</span><span class="n">port</span> <span class="mi">3306</span> <span class="ow">is</span> <span class="n">actively</span> <span class="n">listening</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">MySQL</span> <span class="n">connections</span><span class="o">.</span><span class="p">)</span>
+<span class="n">lsof</span> <span class="o">-</span><span class="n">i</span><span class="p">:</span><span class="mi">3306</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="example2-employee.html" class="btn btn-neutral" title="Example2: Employee Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

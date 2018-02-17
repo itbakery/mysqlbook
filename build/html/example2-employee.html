@@ -189,19 +189,19 @@
 </dl>
 </li>
 </ul>
-<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>shell&gt; unzip test_db-master.zip
+<div class="last highlight-bash"><div class="highlight"><pre><span></span>shell&gt; unzip test_db-master.zip
 shell&gt; <span class="nb">cd</span> test_db-master
 </pre></div>
 </div>
 </div>
 <p>หลังจากทำการ Download และ unzip เรียบร้อย ก็ให้โหลดเข้าสู่ฐานข้อมูล</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shell&gt; mysql -t &lt; employees.sql
+<div class="highlight-bash"><div class="highlight"><pre><span></span>shell&gt; mysql -t &lt; employees.sql
 </pre></div>
 </div>
 <ul class="simple">
 <li>ตาราง employees</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE employees <span class="o">(</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>CREATE TABLE employees <span class="o">(</span>
     emp_no      INT             NOT NULL,  -- UNSIGNED AUTO_INCREMENT??
     birth_date  DATE            NOT NULL,
     first_name  VARCHAR<span class="o">(</span><span class="m">14</span><span class="o">)</span>     NOT NULL,
@@ -217,7 +217,7 @@ shell&gt; <span class="nb">cd</span> test_db-master
 <ul class="simple">
 <li>ตาราง departments</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE departments <span class="o">(</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>CREATE TABLE departments <span class="o">(</span>
     dept_no     CHAR<span class="o">(</span><span class="m">4</span><span class="o">)</span>         NOT NULL,  -- in the form of <span class="s1">&#39;dxxx&#39;</span>
     dept_name   VARCHAR<span class="o">(</span><span class="m">40</span><span class="o">)</span>     NOT NULL,
     PRIMARY KEY <span class="o">(</span>dept_no<span class="o">)</span>,                 -- Index built automatically
@@ -236,7 +236,7 @@ shell&gt; <span class="nb">cd</span> test_db-master
 </ul>
 </dd>
 </dl>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE dept_emp <span class="o">(</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>CREATE TABLE dept_emp <span class="o">(</span>
     emp_no      INT         NOT NULL,
     dept_no     CHAR<span class="o">(</span><span class="m">4</span><span class="o">)</span>     NOT NULL,
     from_date   DATE        NOT NULL,
@@ -262,14 +262,14 @@ shell&gt; <span class="nb">cd</span> test_db-master
 <ol class="last arabic simple">
 <li>ON DELETE RESTRICTED กำหนดให้เป็นค่า Default ของ parent child relation หมายความว่า Database ไม่อนุญาตให้มีการลบ parent record ถ้าหากมีข้อมูลอยู่ใน child records</li>
 <li>ON DELETE CASCADE หากมีการลบข้อมูลใน parent record ทำให้ Database จะทำการส่งคำสั่งไปลบ record ใน child record เช่นกัน</li>
-<li>ON DELETE SET NULL  จะไม่ลบข้อมูล record ใน class ลูก แต่จะแทนค่าด้วย ค่าว่าง <code class="docutils literal notranslate"><span class="pre">NULL</span></code> แทน foreign key ของ parent ที่ถูกลบไป</li>
+<li>ON DELETE SET NULL  จะไม่ลบข้อมูล record ใน class ลูก แต่จะแทนค่าด้วย ค่าว่าง <code class="docutils literal"><span class="pre">NULL</span></code> แทน foreign key ของ parent ที่ถูกลบไป</li>
 </ol>
 </div>
 <ul class="simple">
 <li>ตาราง dept_manager</li>
 </ul>
 <p>ทำหน้าที่เป็นตารางเชื่อม many-to-many ระหว่างตาราง employee และตาราง dept_emp</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE dept_manager <span class="o">(</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>CREATE TABLE dept_manager <span class="o">(</span>
    dept_no      CHAR<span class="o">(</span><span class="m">4</span><span class="o">)</span>  NOT NULL,
    emp_no       INT      NOT NULL,
    from_date    DATE     NOT NULL,
@@ -287,7 +287,7 @@ shell&gt; <span class="nb">cd</span> test_db-master
 <li>ตาราง title</li>
 </ul>
 <p>ทำหน้าที่เป็นตารางเชื่อม  one-to-many ระหว่างตาราง employee และ ตาราง title โดยการออกแบบกำหนดให้พนักงาน (Employee) สามารถมีได้หลายตำแหน่งขึ้นกับเวลาที่แตกต่างกัน โดยมี  emp_no เป็น foreign key กลับไปยัง ตาราง employee</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE titles <span class="o">(</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>CREATE TABLE titles <span class="o">(</span>
     emp_no      INT          NOT NULL,
     title       VARCHAR<span class="o">(</span><span class="m">50</span><span class="o">)</span>  NOT NULL,
     from_date   DATE         NOT NULL,
@@ -305,7 +305,7 @@ shell&gt; <span class="nb">cd</span> test_db-master
 <li>ตาราง Salary</li>
 </ul>
 <p>มีโครงสร้างคล้ายกับตาราง titles เป็นตารางเชื่อมความสัมพันธ์ แบบ one-to-many เชื่อมระหว่าง ตาราง employee และ ตาราง  salaries</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CREATE TABLE salaries <span class="o">(</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>CREATE TABLE salaries <span class="o">(</span>
     emp_no      INT    NOT NULL,
     salary      INT    NOT NULL,
     from_date   DATE   NOT NULL,

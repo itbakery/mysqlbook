@@ -126,6 +126,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
 </ul>
 
             
@@ -195,7 +200,7 @@
 <ol class="arabic simple">
 <li>การใช้งานผ่านทาง sql shell (psql) connect database ด้วย psql</li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>psql -U postgres postgres
+<div class="highlight-bash"><div class="highlight"><pre><span></span>psql -U postgres postgres
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE testdb1;</span>
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE USER dbadmin1;</span>
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># ALTER USER dbadmin1 WITH password &#39;password&#39;;</span>
@@ -217,7 +222,7 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
 <li>การใช้งานผ่านคำสั่ง createdb command ผ่านทาง linux shell</li>
 </ol>
 <p>การสร้าง user ผ่านคำสั่ง createuser และ การสร้างฐานข้อมูลผ่านคำสั่ง createdb</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createuser --help</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createuser --help</span>
 
 <span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># createuser -P -s -d dbadmin3 -U postgres</span>
 Enter password <span class="k">for</span> new role:
@@ -254,12 +259,12 @@ testdb3   <span class="p">|</span> dbadmin3 <span class="p">|</span> UTF8     <s
 <div class="section" id="id1">
 <h2>สรุปคำสั่งเบื้องต้น<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">testdb1=&gt;</span> <span class="pre">\du</span></code>  แสดงรายชื่อ user</li>
-<li><code class="docutils literal notranslate"><span class="pre">postgres=#</span> <span class="pre">\l</span></code>  แสดงฐานข้อมูลทั้งหมด</li>
-<li><code class="docutils literal notranslate"><span class="pre">postgres=#</span> <span class="pre">\dt</span></code>  แสดงฐานข้อมูลทั้งหมด</li>
-<li><code class="docutils literal notranslate"><span class="pre">postgres=#</span> <span class="pre">\c</span></code>   database`` connect กับฐานข้อมูล</li>
+<li><code class="docutils literal"><span class="pre">testdb1=&gt;</span> <span class="pre">\du</span></code>  แสดงรายชื่อ user</li>
+<li><code class="docutils literal"><span class="pre">postgres=#</span> <span class="pre">\l</span></code>  แสดงฐานข้อมูลทั้งหมด</li>
+<li><code class="docutils literal"><span class="pre">postgres=#</span> <span class="pre">\dt</span></code>  แสดงฐานข้อมูลทั้งหมด</li>
+<li><code class="docutils literal"><span class="pre">postgres=#</span> <span class="pre">\c</span></code>   database`` connect กับฐานข้อมูล</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin1 testdb1</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin1 testdb1</span>
 Password <span class="k">for</span> user dbadmin1:
 psql <span class="o">(</span><span class="m">10</span>.2<span class="o">)</span>
 Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
@@ -298,12 +303,12 @@ You are now connected to database <span class="s2">&quot;testdb3&quot;</span> as
 <div class="section" id="id2">
 <h2>ตัวอย่าง 1 สร้างตาราง<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>สร้างตาราง <code class="docutils literal notranslate"><span class="pre">employees</span></code> ประกอบด้วย colume employee_id, first_name, last_name</li>
-<li><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">employees</span> <span class="pre">(employee_id</span> <span class="pre">int,</span> <span class="pre">first_name</span> <span class="pre">varchar,</span> <span class="pre">last_name</span> <span class="pre">varchar);</span></code></li>
+<li>สร้างตาราง <code class="docutils literal"><span class="pre">employees</span></code> ประกอบด้วย colume employee_id, first_name, last_name</li>
+<li><code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">employees</span> <span class="pre">(employee_id</span> <span class="pre">int,</span> <span class="pre">first_name</span> <span class="pre">varchar,</span> <span class="pre">last_name</span> <span class="pre">varchar);</span></code></li>
 <li>เพิ่ม record</li>
-<li><code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">employees</span> <span class="pre">VALUES</span> <span class="pre">(1,</span> <span class="pre">'John',</span> <span class="pre">'Doe');</span></code></li>
+<li><code class="docutils literal"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">employees</span> <span class="pre">VALUES</span> <span class="pre">(1,</span> <span class="pre">'John',</span> <span class="pre">'Doe');</span></code></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">testdb3</span><span class="o">=</span>&gt; CREATE TABLE employees <span class="o">(</span>employee_id int, first_name varchar, last_name varchar<span class="o">)</span><span class="p">;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">testdb3</span><span class="o">=</span>&gt; CREATE TABLE employees <span class="o">(</span>employee_id int, first_name varchar, last_name varchar<span class="o">)</span><span class="p">;</span>
 <span class="nv">testdb3</span><span class="o">=</span>&gt; INSERT INTO employees VALUES <span class="o">(</span><span class="m">1</span>, <span class="s1">&#39;John&#39;</span>, <span class="s1">&#39;Doe&#39;</span><span class="o">)</span><span class="p">;</span>
 
 <span class="nv">testdb3</span><span class="o">=</span>&gt; <span class="se">\d</span> employees
@@ -326,8 +331,8 @@ last_name   <span class="p">|</span> character varying <span class="p">|</span> 
 </div>
 <div class="section" id="information-schema-meta-data">
 <h2>Information_schema meta data<a class="headerlink" href="#information-schema-meta-data" title="Permalink to this headline">¶</a></h2>
-<p>ใช้คำสั่ง SELECT ค้นหาชื่อ colume name จากตาราง <code class="docutils literal notranslate"><span class="pre">information_schema</span></code>  meta-data</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>ใช้คำสั่ง SELECT ค้นหาชื่อ colume name จากตาราง <code class="docutils literal"><span class="pre">information_schema</span></code>  meta-data</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -343,7 +348,7 @@ WHERE
 </div>
 <div class="section" id="tables-pg-catalog-schema">
 <h2>แสดง tables ใช้ pg_catalog schema<a class="headerlink" href="#tables-pg-catalog-schema" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -371,9 +376,9 @@ AND schemaname !<span class="o">=</span> <span class="s1">&#39;information_schem
 <div class="section" id="create-table">
 <h2>CREATE TABLE<a class="headerlink" href="#create-table" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>สร้างไฟล์ ชื่อ <code class="docutils literal notranslate"><span class="pre">flight-createtable.sql</span></code> มีเนื้อหาดังต่อไปนี้</li>
+<li>สร้างไฟล์ ชื่อ <code class="docutils literal"><span class="pre">flight-createtable.sql</span></code> มีเนื้อหาดังต่อไปนี้</li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">flights</span> <span class="p">(</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">flights</span> <span class="p">(</span>
     <span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
     <span class="n">origin</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
     <span class="n">destination</span> <span class="n">VARCHAR</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
@@ -381,11 +386,11 @@ AND schemaname !<span class="o">=</span> <span class="s1">&#39;information_schem
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>มีการกำหนด constraint <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> ในไฟล์ เพื่อป้องกันค่าว่าง (ไม่กำหนดค่า)</p>
+<p>มีการกำหนด constraint <code class="docutils literal"><span class="pre">NOT</span> <span class="pre">NULL</span></code> ในไฟล์ เพื่อป้องกันค่าว่าง (ไม่กำหนดค่า)</p>
 <img alt="_images/constraint.png" src="_images/constraint.png" />
 <p>เป็น sql syntax เมื่อ import เข้าสู่ฐานข้อมูล ก็ถูกแปลความ สามารถที่จะนำเข้าสู่ database
-ได้ 2 แบบ ได้แก่การใช้การ <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> หรือจะ copy โดยตรงไปยัง postgres shell ก็ได้</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin3 testdb3  &lt; flight-createdb.sql</span>
+ได้ 2 แบบ ได้แก่การใช้การ <code class="docutils literal"><span class="pre">&lt;</span></code> หรือจะ copy โดยตรงไปยัง postgres shell ก็ได้</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U dbadmin3 testdb3  &lt; flight-createdb.sql</span>
 Password <span class="k">for</span> user dbadmin3:
 CREATE TABLE
 
@@ -404,11 +409,11 @@ Password <span class="k">for</span> user dbadmin3:
 <div class="section" id="insert-table">
 <h2>INSERT TABLE<a class="headerlink" href="#insert-table" title="Permalink to this headline">¶</a></h2>
 <p>รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">TABLE_NAME</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">column3</span><span class="p">,</span><span class="o">...</span><span class="n">columnN</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">TABLE_NAME</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">column3</span><span class="p">,</span><span class="o">...</span><span class="n">columnN</span><span class="p">)</span>
 <span class="n">VALUES</span> <span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="n">value3</span><span class="p">,</span><span class="o">...</span><span class="n">valueN</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
     <span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
     <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;London&#39;</span><span class="p">,</span> <span class="mi">415</span><span class="p">);</span>
 <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flights</span>
@@ -429,7 +434,7 @@ Password <span class="k">for</span> user dbadmin3:
 </pre></div>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">root</span><span class="nd">@localhost</span> <span class="o">~</span><span class="p">]</span><span class="c1"># psql -U dbadmin3 testdb3  -c &quot;select * from flights&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">root</span><span class="nd">@localhost</span> <span class="o">~</span><span class="p">]</span><span class="c1"># psql -U dbadmin3 testdb3  -c &quot;select * from flights&quot;</span>
 <span class="n">Password</span> <span class="k">for</span> <span class="n">user</span> <span class="n">dbadmin3</span><span class="p">:</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
 <span class="o">----+----------+-------------+----------</span>
@@ -446,7 +451,7 @@ Password <span class="k">for</span> user dbadmin3:
 <div class="section" id="select-and-where">
 <h2>SELECT and WHERE<a class="headerlink" href="#select-and-where" title="Permalink to this headline">¶</a></h2>
 <p>รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">columnN</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">columnN</span>
 <span class="n">FROM</span> <span class="n">table_name</span>
 <span class="n">WHERE</span> <span class="p">[</span><span class="n">CONDITION</span> <span class="o">|</span> <span class="n">EXPRESSION</span><span class="p">];</span>
 </pre></div>
@@ -461,7 +466,7 @@ Password <span class="k">for</span> user dbadmin3:
 <h2>PostgreSQL Logical Operators<a class="headerlink" href="#postgresql-logical-operators" title="Permalink to this headline">¶</a></h2>
 <img alt="_images/logical.png" src="_images/logical.png" />
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">;</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
 <span class="o">----+----------+-------------+----------</span>
   <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
@@ -489,10 +494,10 @@ Password <span class="k">for</span> user dbadmin3:
 <p>Aggregate function คือการคำนวนแล้วได้ผลลัพท์ เพียงอย่างเดียว จากการคำนวนของชุดข้อมูล ชุดใดๆ</p>
 <img alt="_images/aggregate.png" src="_images/aggregate.png" />
 <ul class="simple">
-<li>ต้องการหาค่าเฉลี่ย <code class="docutils literal notranslate"><span class="pre">avg</span></code></li>
+<li>ต้องการหาค่าเฉลี่ย <code class="docutils literal"><span class="pre">avg</span></code></li>
 </ul>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">AVG</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span><span class="p">;</span>
          <span class="n">avg</span>
 <span class="o">----------------------</span>
  <span class="mf">501.6666666666666667</span>
@@ -506,10 +511,10 @@ Password <span class="k">for</span> user dbadmin3:
 </pre></div>
 </div>
 <ul class="simple">
-<li>ต้องการนับจำนวน record <code class="docutils literal notranslate"><span class="pre">count</span></code></li>
+<li>ต้องการนับจำนวน record <code class="docutils literal"><span class="pre">count</span></code></li>
 </ul>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">FROM</span> <span class="n">flights</span><span class="p">;</span>
  <span class="n">count</span>
 <span class="o">-------</span>
      <span class="mi">6</span>
@@ -530,7 +535,7 @@ Password <span class="k">for</span> user dbadmin3:
 <li>ต้องการหาค่า ต่ำสุด และ สูงสุด</li>
 </ul>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT MIN(duration) FROM flights;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT MIN(duration) FROM flights;</span>
  <span class="nb">min</span>
 <span class="o">-----</span>
  <span class="mi">245</span>
@@ -546,13 +551,13 @@ Password <span class="k">for</span> user dbadmin3:
 </div>
 <div class="section" id="in-not-in-condition">
 <h2>IN, NOT IN CONDITION<a class="headerlink" href="#in-not-in-condition" title="Permalink to this headline">¶</a></h2>
-<p>postgres สามารถค้นหา ด้วย <code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">condition</span></code>
+<p>postgres สามารถค้นหา ด้วย <code class="docutils literal"><span class="pre">IN</span> <span class="pre">condition</span></code>
 รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">expression</span> <span class="n">IN</span> <span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="o">....</span> <span class="n">value_n</span><span class="p">);</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">expression</span> <span class="n">IN</span> <span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="o">....</span> <span class="n">value_n</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin IN (&#39;New York&#39;, &#39;Lima&#39;);</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin IN (&#39;New York&#39;, &#39;Lima&#39;);</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
 <span class="o">----+----------+-------------+----------</span>
   <span class="mi">1</span> <span class="o">|</span> <span class="n">New</span> <span class="n">York</span> <span class="o">|</span> <span class="n">London</span>      <span class="o">|</span>      <span class="mi">415</span>
@@ -573,12 +578,12 @@ Password <span class="k">for</span> user dbadmin3:
 <div class="section" id="like-not-like">
 <h2>LIKE, NOT LIKE<a class="headerlink" href="#like-not-like" title="Permalink to this headline">¶</a></h2>
 <p>รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">LIKE</span> <span class="n">pattern</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">LIKE</span> <span class="n">pattern</span>
 <span class="n">string</span> <span class="n">NOT</span> <span class="n">LIKE</span> <span class="n">pattern</span>
 </pre></div>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin LIKE &#39;%a%&#39;;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE origin LIKE &#39;%a%&#39;;</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
 <span class="o">----+----------+-------------+----------</span>
   <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
@@ -590,10 +595,10 @@ Password <span class="k">for</span> user dbadmin3:
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Like ใช้ได้กับ text หากต้องการ ค้นหา Attributes ที่เป็น integer ต้องทำการ cast
-เป็น text ด้วย <code class="docutils literal notranslate"><span class="pre">::TEXT</span></code></p>
+เป็น text ด้วย <code class="docutils literal"><span class="pre">::TEXT</span></code></p>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE duration LIKE &#39;%7%&#39;;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE duration LIKE &#39;%7%&#39;;</span>
 
 <span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights WHERE duration::TEXT LIKE &#39;%7%&#39;;</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
@@ -607,21 +612,21 @@ Password <span class="k">for</span> user dbadmin3:
 <div class="section" id="update">
 <h2>UPDATE<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
 <p>รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">table_name</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">table_name</span>
 <span class="n">SET</span> <span class="n">column1</span> <span class="o">=</span> <span class="n">value1</span><span class="p">,</span> <span class="n">column2</span> <span class="o">=</span> <span class="n">value2</span><span class="o">....</span><span class="p">,</span> <span class="n">columnN</span> <span class="o">=</span> <span class="n">valueN</span>
 <span class="n">WHERE</span> <span class="p">[</span><span class="n">condition</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>ใช้สำหรับการปรับปรุงค่าของ Attributes</p>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">flights</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">flights</span>
     <span class="n">SET</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">430</span>
     <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span>
     <span class="n">AND</span> <span class="n">destination</span> <span class="o">=</span> <span class="s1">&#39;London&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># UPDATE flights</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># UPDATE flights</span>
 <span class="n">testdb3</span><span class="o">-</span><span class="c1"># SET duration = 430</span>
 <span class="n">testdb3</span><span class="o">-</span><span class="c1"># WHERE origin = &#39;New York&#39;</span>
 <span class="n">testdb3</span><span class="o">-</span><span class="c1"># AND destination = &#39;London&#39;;</span>
@@ -632,12 +637,12 @@ Password <span class="k">for</span> user dbadmin3:
 <div class="section" id="delete">
 <h2>DELETE<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
 <p>รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">table_name</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">table_name</span>
 <span class="n">WHERE</span> <span class="p">[</span><span class="n">condition</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">flights</span> <span class="n">WHERE</span> <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;New York&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -645,7 +650,7 @@ Password <span class="k">for</span> user dbadmin3:
 <h2>LIMIT<a class="headerlink" href="#limit" title="Permalink to this headline">¶</a></h2>
 <p>จำกัด จำนวนผลลัพท์ ที่ได้จาก query</p>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights LIMIT 2;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights LIMIT 2;</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
 <span class="o">----+----------+-------------+----------</span>
   <span class="mi">2</span> <span class="o">|</span> <span class="n">Shanghai</span> <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">760</span>
@@ -658,7 +663,7 @@ Password <span class="k">for</span> user dbadmin3:
 <h2>ORDER<a class="headerlink" href="#order" title="Permalink to this headline">¶</a></h2>
 <p>เรียงลำดับผลลัพท์ โดย เลือก attribute เรียงจากน้อยไปหามาก ASC หรือเรียงจากมากไปหาน้อย DSC</p>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights ORDER BY duration ASC;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT * FROM flights ORDER BY duration ASC;</span>
  <span class="nb">id</span> <span class="o">|</span>  <span class="n">origin</span>  <span class="o">|</span> <span class="n">destination</span> <span class="o">|</span> <span class="n">duration</span>
 <span class="o">----+----------+-------------+----------</span>
   <span class="mi">5</span> <span class="o">|</span> <span class="n">Moscow</span>   <span class="o">|</span> <span class="n">Paris</span>       <span class="o">|</span>      <span class="mi">245</span>
@@ -694,7 +699,7 @@ Password <span class="k">for</span> user dbadmin3:
 <h2>GROUP BY<a class="headerlink" href="#group-by" title="Permalink to this headline">¶</a></h2>
 <p>โดยส่วนมากใช้งานร่วมกับ aggregate fuction  SUM, COUNT , HAVE
 รูปแบบ sql syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">column</span><span class="o">-</span><span class="nb">list</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">column</span><span class="o">-</span><span class="nb">list</span>
 <span class="n">FROM</span> <span class="n">table_name</span>
 <span class="n">WHERE</span> <span class="p">[</span> <span class="n">conditions</span> <span class="p">]</span>
 <span class="n">GROUP</span> <span class="n">BY</span> <span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="o">....</span><span class="n">columnN</span>
@@ -702,7 +707,7 @@ Password <span class="k">for</span> user dbadmin3:
 </pre></div>
 </div>
 <p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT origin FROM flights GROUP BY origin;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">testdb3</span><span class="o">=</span><span class="c1"># SELECT origin FROM flights GROUP BY origin;</span>
   <span class="n">origin</span>
 <span class="o">----------</span>
  <span class="n">Shanghai</span>
@@ -749,7 +754,7 @@ Password <span class="k">for</span> user dbadmin3:
 </dl>
 </li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="n">flights</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="n">flights</span><span class="p">;</span>
 
 <span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">locations</span> <span class="p">(</span>
     <span class="nb">id</span> <span class="n">SERIAL</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
@@ -775,13 +780,13 @@ Password <span class="k">for</span> user dbadmin3:
 <li><dl class="first docutils">
 <dt>Insert ข้อมูลในฐานข้อมูล database</dt>
 <dd><ul class="first last">
-<li>สร้าง ไฟล์ <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">flight-data.sql</span></code> ด้วยข้อมูลด้านล่างนี้</li>
+<li>สร้าง ไฟล์ <code class="docutils literal"><span class="pre">vim</span> <span class="pre">flight-data.sql</span></code> ด้วยข้อมูลด้านล่างนี้</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>
     <span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
     <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;JFK&#39;</span><span class="p">,</span><span class="s1">&#39;New York&#39;</span><span class="p">);</span>
 <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">locations</span>

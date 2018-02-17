@@ -116,6 +116,11 @@
 <li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
 </ul>
 
             
@@ -185,7 +190,7 @@
 <div class="section" id="postgresql-10-centos-7">
 <h2>ติดตั้ง postgresql 10 บน centos 7<a class="headerlink" href="#postgresql-10-centos-7" title="Permalink to this headline">¶</a></h2>
 <p>เพิ่ม repository repo และติดตั้ง</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo su -
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo su -
 yum update -y
 yum install vim
 wget https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-1.noarch.rpm
@@ -196,7 +201,7 @@ yum install -y postgresql10-server postgresql10 postgresql10-contrib
 </div>
 <div class="section" id="initialize-postgres-server">
 <h2>Initialize postgres Server<a class="headerlink" href="#initialize-postgres-server" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/usr/pgsql-10/bin/postgresql-10-setup initdb
+<div class="highlight-bash"><div class="highlight"><pre><span></span>/usr/pgsql-10/bin/postgresql-10-setup initdb
 
 Initializing database ... OK
 
@@ -211,7 +216,7 @@ drwx------. <span class="m">20</span> postgres postgres <span class="m">4096</sp
 </div>
 <div class="section" id="start-server">
 <h2>Start server<a class="headerlink" href="#start-server" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl start postgresql-10
+<div class="highlight-bash"><div class="highlight"><pre><span></span>systemctl start postgresql-10
 systemctl <span class="nb">enable</span> postgresql-10
 systemctl status postgresql-10
 
@@ -224,7 +229,7 @@ tcp    LISTEN     <span class="m">0</span>      <span class="m">128</span>     :
 </div>
 <div class="section" id="enable-firewall">
 <h2>Enable firewall<a class="headerlink" href="#enable-firewall" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl start firewalld
+<div class="highlight-bash"><div class="highlight"><pre><span></span>systemctl start firewalld
 systemctl <span class="nb">enable</span> firewalld
 firewall-cmd --permanent --add-service<span class="o">=</span>postgresql
 --or--
@@ -238,7 +243,7 @@ firewall-cmd --reload
 <p>โดย default การติดตั้งจะสร้าง  user postgres การใช้งานโดยการเปลี่ยน user เป็น postgres
 และใช้คำสั่ง psql (ไม่ต้องใส่ password เนื่องจากอยู่ในโหมด ident คือ user ที่ login จะต้องตรงกับ
 ีuser ในฐานข้อมูล)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getenv passwd  <span class="p">|</span> grep postgres
+<div class="highlight-bash"><div class="highlight"><pre><span></span>getenv passwd  <span class="p">|</span> grep postgres
 postgres:x:26:26:PostgreSQL Server:/var/lib/pgsql:/bin/bash
 
 su - postgres
@@ -269,7 +274,7 @@ ALTER ROLE
 </div>
 <div class="section" id="change-mode-ident-to-md5">
 <h2>Change mode ident to md5<a class="headerlink" href="#change-mode-ident-to-md5" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim /var/lib/pgsql/10/data/pg_hba.conf
+<div class="highlight-bash"><div class="highlight"><pre><span></span>vim /var/lib/pgsql/10/data/pg_hba.conf
 
 <span class="nb">local</span>   all             all                                     peer
 host    all             all             <span class="m">127</span>.0.0.1/32            ident
@@ -277,7 +282,7 @@ host    all             all             ::1/128                 ident
 </pre></div>
 </div>
 <p>เปลี่ยนเป็น</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">local</span>   all             all                                     md5
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">local</span>   all             all                                     md5
 host    all             all             <span class="m">127</span>.0.0.1/32            md5
 host    all             all             ::1/128                 md5
 </pre></div>
@@ -285,7 +290,7 @@ host    all             all             ::1/128                 md5
 </div>
 <div class="section" id="allow-listen-to-all-interface">
 <h2>Allow listen to all interface<a class="headerlink" href="#allow-listen-to-all-interface" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim /var/lib/pgsql/10/data/postgresql.conf  +58
+<div class="highlight-bash"><div class="highlight"><pre><span></span>vim /var/lib/pgsql/10/data/postgresql.conf  +58
 <span class="o">(</span>บรรทัดที่ <span class="m">58</span><span class="o">)</span>
 <span class="nv">listen_addresses</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
 </pre></div>
@@ -293,13 +298,13 @@ host    all             all             ::1/128                 md5
 </div>
 <div class="section" id="restart">
 <h2>Restart<a class="headerlink" href="#restart" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl restart postgresql
+<div class="highlight-bash"><div class="highlight"><pre><span></span>systemctl restart postgresql
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-postgres-password">
 <h2>Set postgres password<a class="headerlink" href="#set-postgres-password" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passwd postgres
+<div class="highlight-bash"><div class="highlight"><pre><span></span>passwd postgres
 
 Changing password <span class="k">for</span> user postgres.
 New password:
@@ -311,7 +316,7 @@ passwd: all authentication tokens updated successfully.
 </div>
 <div class="section" id="test-connect">
 <h2>Test connect<a class="headerlink" href="#test-connect" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># systemctl restart postgresql-10</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># systemctl restart postgresql-10</span>
 <span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># psql -U postgres postgres</span>
 Password <span class="k">for</span> user postgres:
 psql <span class="o">(</span><span class="m">10</span>.2<span class="o">)</span>

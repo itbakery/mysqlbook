@@ -122,6 +122,11 @@
 <li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
 </ul>
 
             
@@ -416,7 +421,7 @@ Cardinality หมายถึง จำนวนที่มากที่ส�
 <p>class ประกอบด้วย Name, attribute, methods โดยการออกแบบ data model ก็เพิ่มระบุค่าของ PK หรือ FK และ ไม่ต้องแสดง methods (สนใจเฉพาะที่เป็น data)</p>
 <img alt="_images/er-student1.png" src="_images/er-student1.png" />
 <p>2. Association
-แสดงความสัมพันธ์ ระหว่าง  Student และ College แทนด้วยการลากเส้น และระบุชนิดของความสัมพันธ์ <code class="docutils literal notranslate"><span class="pre">applied</span></code></p>
+แสดงความสัมพันธ์ ระหว่าง  Student และ College แทนด้วยการลากเส้น และระบุชนิดของความสัมพันธ์ <code class="docutils literal"><span class="pre">applied</span></code></p>
 <img alt="_images/er-student2.png" src="_images/er-student2.png" />
 <p>เมื่อมีความสัมพันธ์ ระหว่าง class ก็จะมีการระบุจำนวนของความสัมพันธ์ เรียกว่า Multiplicity of Association</p>
 <ul class="simple">
@@ -426,9 +431,9 @@ Cardinality หมายถึง จำนวนที่มากที่ส�
 </ul>
 <p>จำนวนของความสัมพันธ์จะเป็นเท่าไหรก็ได้ อยู่ที่การเก็บข้อมูล</p>
 <p>3. Association Classes
-บางครั้งเราต้องการเก็บข้อมูล มากกว่าแค่ความสัมพันธ์ จากตัวอย่าง ต้องการเก็บวันที่สมัครเรียน <code class="docutils literal notranslate"><span class="pre">date</span></code></p>
+บางครั้งเราต้องการเก็บข้อมูล มากกว่าแค่ความสัมพันธ์ จากตัวอย่าง ต้องการเก็บวันที่สมัครเรียน <code class="docutils literal"><span class="pre">date</span></code></p>
 <img alt="_images/er-student3.png" src="_images/er-student3.png" />
-<p>บางครั้งในการออกแบบ มีการใช้ความสัมพันธ์ภายในระหว่าง class มีความสัมพันธ์กันเอง เรียกว่า <code class="docutils literal notranslate"><span class="pre">self</span> <span class="pre">Association</span></code></p>
+<p>บางครั้งในการออกแบบ มีการใช้ความสัมพันธ์ภายในระหว่าง class มีความสัมพันธ์กันเอง เรียกว่า <code class="docutils literal"><span class="pre">self</span> <span class="pre">Association</span></code></p>
 <img alt="_images/er-student4.png" src="_images/er-student4.png" />
 <p>4. Subclass
 บางครั้งใน application มีการใช้งาน subclass หรือ class ย่อยเพื่อเก็บข้อมูล ย่อยลงไป เช่น นักเรียนไทย และ นักเรียน inter เป็นต้น  โดยจะเรียก student superclass คำเรียกที่ใช้เรียกในการออกแบบ class diagram</p>

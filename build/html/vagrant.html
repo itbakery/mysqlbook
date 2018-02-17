@@ -104,6 +104,11 @@
 <li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Vagrant</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
 </ul>
 
             
@@ -169,13 +174,13 @@
             
   <div class="section" id="vagrant">
 <h1>Vagrant<a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h1>
-<p>เตรียมเครื่องด้วย vagrant สร้าง project folder ชื่อ <code class="docutils literal notranslate"><span class="pre">mysql</span></code> และสร้าง file <code class="docutils literal notranslate"><span class="pre">Vagrantfile</span></code> ดังนี้</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">mysql</span>
+<p>เตรียมเครื่องด้วย vagrant สร้าง project folder ชื่อ <code class="docutils literal"><span class="pre">mysql</span></code> และสร้าง file <code class="docutils literal"><span class="pre">Vagrantfile</span></code> ดังนี้</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">mysql</span>
 <span class="n">cd</span> <span class="n">mysql</span>
 <span class="n">vim</span> <span class="n">Vagrantfile</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
 <span class="c1"># vi: set ft=ruby :</span>
 
 <span class="c1"># All Vagrant configuration is done below. The &quot;2&quot; in Vagrant.configure</span>
@@ -198,16 +203,16 @@
 <span class="n">end</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">up</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">up</span>
 <span class="n">vagrant</span> <span class="n">ssh</span>
 </pre></div>
 </div>
 <p>หากมีความผิดพลาดเนื่องจาก locale</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">bash</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">setlocale</span><span class="p">:</span> <span class="n">LC_CTYPE</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">change</span> <span class="n">locale</span> <span class="p">(</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="p">):</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">bash</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">setlocale</span><span class="p">:</span> <span class="n">LC_CTYPE</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">change</span> <span class="n">locale</span> <span class="p">(</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span><span class="p">):</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
 </pre></div>
 </div>
 <p>ให้ทำการแก้ไข</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
 <span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 <span class="n">LC_ALL</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 </pre></div>

@@ -42,6 +42,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="next" title="Install Mysql Server on windows" href="install-mysql-windows.html"/>
         <link rel="prev" title="Vagrant" href="vagrant.html"/> 
 
   
@@ -107,6 +108,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#add-services">add services</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
 </ul>
 
             
@@ -173,13 +179,13 @@
   <div class="section" id="firewall-basic">
 <h1>Firewall Basic<a class="headerlink" href="#firewall-basic" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/firewalld-architecture.png" src="_images/firewalld-architecture.png" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">state</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">state</span>
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="n">zones</span>
 <span class="n">public</span>
   <span class="n">interfaces</span><span class="p">:</span> <span class="n">eth0</span> <span class="n">eth1</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">zone</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">interface</span><span class="o">=</span><span class="n">eth0</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">zone</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">interface</span><span class="o">=</span><span class="n">eth0</span>
 <span class="n">public</span>
 
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">interfaces</span>
@@ -205,9 +211,9 @@
 </div>
 <div class="section" id="get-services">
 <h2>get services<a class="headerlink" href="#get-services" title="Permalink to this headline">¶</a></h2>
-<p>แสดงรายการ service ที่โหลดอยู่ในระบบ โดยไปอ่านค่าของ configuration ที่อยู่ใน <code class="docutils literal notranslate"><span class="pre">/usr/lib/firewalld/services/</span></code>
-โดยมีชื่อ <code class="docutils literal notranslate"><span class="pre">service-name.xml</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">firewalld</span><span class="o">/</span><span class="n">services</span><span class="o">/</span>
+<p>แสดงรายการ service ที่โหลดอยู่ในระบบ โดยไปอ่านค่าของ configuration ที่อยู่ใน <code class="docutils literal"><span class="pre">/usr/lib/firewalld/services/</span></code>
+โดยมีชื่อ <code class="docutils literal"><span class="pre">service-name.xml</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">firewalld</span><span class="o">/</span><span class="n">services</span><span class="o">/</span>
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">services</span>
 <span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">info</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">ftp</span>
 
@@ -222,8 +228,8 @@
 </div>
 <div class="section" id="add-services">
 <h2>add services<a class="headerlink" href="#add-services" title="Permalink to this headline">¶</a></h2>
-<p>การเพิ่ม service ให้แก่โซน สามารถ ใช้ <code class="docutils literal notranslate"><span class="pre">--add-service</span></code> แต่หากไม่ระบุ โซนจะเท่ากับเป็นการ add ไปยัง default zone</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-service=mysql
+<p>การเพิ่ม service ให้แก่โซน สามารถ ใช้ <code class="docutils literal"><span class="pre">--add-service</span></code> แต่หากไม่ระบุ โซนจะเท่ากับเป็นการ add ไปยัง default zone</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-service=mysql
 success
 $ sudo firewall-cmd --reload
 success
@@ -243,8 +249,8 @@ trusted
   rich rules:
 </pre></div>
 </div>
-<p>สามรถใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">--add-port</span></code> ระบุ port/protocal ที่ต้องการ สามารถที่จะระบุแบบ &nbsp;&nbsp;port เดียวหรือสามารถระบุเป็นช่วง</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-port=8080/tcp
+<p>สามรถใช้คำสั่ง <code class="docutils literal"><span class="pre">--add-port</span></code> ระบุ port/protocal ที่ต้องการ สามารถที่จะระบุแบบ &nbsp;&nbsp;port เดียวหรือสามารถระบุเป็นช่วง</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --permanent --zone=trusted --add-port=8080/tcp
 $ sudo firewall-cmd --permanent --zone=trusted --add-port=5060-5061/udp
 $ sudo firewall-cmd --zone=trusted --list-ports
 $ sudo firewall-cmd --zone=trusted --list-services
@@ -262,6 +268,8 @@ $ sudo firewall-cmd --zone=trusted --list-services
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install-mysql-windows.html" class="btn btn-neutral float-right" title="Install Mysql Server on windows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="vagrant.html" class="btn btn-neutral" title="Vagrant" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

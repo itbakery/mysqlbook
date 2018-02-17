@@ -176,11 +176,11 @@
 <h1>Summary MySQL command<a class="headerlink" href="#summary-mysql-command" title="Permalink to this headline">¶</a></h1>
 <p>สรุปคำสั่งของ mysql เพื่อใช้สำหรับการอ้างอ้างการเรียนรู้ ได้ดังนี้</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">--</span></code> แทน comment SQL จะไม่นำมาประมวลผล</li>
+<li><code class="docutils literal"><span class="pre">--</span></code> แทน comment SQL จะไม่นำมาประมวลผล</li>
 </ul>
 <ol class="arabic">
 <li><p class="first">Database Level:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DROP DATABASE databaseName                 -- Delete the database (irrecoverable!)
+<div class="highlight-default"><div class="highlight"><pre><span></span>DROP DATABASE databaseName                 -- Delete the database (irrecoverable!)
 DROP DATABASE IF EXISTS databaseName       -- Delete if it exists
 CREATE DATABASE databaseName               -- Create a new database
 CREATE DATABASE IF NOT EXISTS databaseName -- Create only if it does not exists
@@ -192,7 +192,7 @@ SHOW CREATE DATABASE databaseName          -- Show the CREATE DATABASE statement
 </div>
 </li>
 <li><p class="first">Table-level:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="n">EXISTS</span><span class="p">]</span> <span class="n">tableName</span><span class="p">,</span> <span class="o">...</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="n">EXISTS</span><span class="p">]</span> <span class="n">tableName</span><span class="p">,</span> <span class="o">...</span>
 <span class="n">CREATE</span> <span class="n">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span><span class="p">]</span> <span class="n">tableName</span> <span class="p">(</span>
    <span class="n">columnName</span> <span class="n">columnType</span> <span class="n">columnAttribute</span><span class="p">,</span> <span class="o">...</span>
    <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">(</span><span class="n">columnName</span><span class="p">),</span>
@@ -210,7 +210,7 @@ SHOW CREATE DATABASE databaseName          -- Show the CREATE DATABASE statement
 </div>
 </li>
 <li><p class="first">Row-level:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">Row</span><span class="o">-</span><span class="n">Level</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">Row</span><span class="o">-</span><span class="n">Level</span>
 <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">tableName</span>
    <span class="n">VALUES</span> <span class="p">(</span><span class="n">column1Value</span><span class="p">,</span> <span class="n">column2Value</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>               <span class="o">--</span> <span class="n">Insert</span> <span class="n">on</span> <span class="nb">all</span> <span class="n">Columns</span>
 <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">tableName</span>
@@ -235,7 +235,7 @@ SHOW CREATE DATABASE databaseName          -- Show the CREATE DATABASE statement
 </ol>
 <p>มาเริ่มต้นสร้าง ฐานข้อมูลชื่อ southwind</p>
 <img alt="_images/southwind.PNG" src="_images/southwind.PNG" />
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; SELECT version<span class="o">()</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mysql&gt; SELECT version<span class="o">()</span>
 
 mysql&gt; CREATE DATABASE southwind<span class="p">;</span>
 Query OK, <span class="m">1</span> row affected <span class="o">(</span><span class="m">0</span>.03 sec<span class="o">)</span>
@@ -252,10 +252,10 @@ Query OK, <span class="m">0</span> rows affected <span class="o">(</span><span c
 </div>
 <ul class="simple">
 <li>ให้ระวังคำสั่ง `` SQL DROP`` เนื่องจาก ไม่สามารถเรียกคืนได้ sql ไม่มีคำสั่ง undo</li>
-<li>แสดง ฐานข้อมูล เราสามารถใช้ <code class="docutils literal notranslate"><span class="pre">\g</span></code> (slash g) หรือ <code class="docutils literal notranslate"><span class="pre">;</span></code> semicolon เป็นการบอกให้ sql รับคำสั่งไปประมวลผล</li>
-<li>ใช้ <code class="docutils literal notranslate"><span class="pre">--</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">and</span> <span class="pre">*/</span></code> เป็นการ แสดง comment</li>
+<li>แสดง ฐานข้อมูล เราสามารถใช้ <code class="docutils literal"><span class="pre">\g</span></code> (slash g) หรือ <code class="docutils literal"><span class="pre">;</span></code> semicolon เป็นการบอกให้ sql รับคำสั่งไปประมวลผล</li>
+<li>ใช้ <code class="docutils literal"><span class="pre">--</span></code> หรือ <code class="docutils literal"><span class="pre">/*</span> <span class="pre">and</span> <span class="pre">*/</span></code> เป็นการ แสดง comment</li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql&gt; CREATE DATABASE IF NOT EXISTS southwind<span class="p">;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mysql&gt; CREATE DATABASE IF NOT EXISTS southwind<span class="p">;</span>
 
 mysql&gt; SHOW CREATE DATABASE southwind <span class="se">\G</span>
 *************************** <span class="m">1</span>. row ***************************
@@ -264,8 +264,8 @@ Create Database: CREATE DATABASE <span class="sb">`</span>southwind<span class="
 </pre></div>
 </div>
 <p>เมื่อสร้าง ฐานข้อมูลแล้วก็จะมีการกำหนดการใช้งานให้เป็น ฐานข้อมูลหลักหรือ
-default database ด้วยคำสั่ง  <code class="docutils literal notranslate"><span class="pre">USE</span> <span class="pre">databasename</span></code> ทำให้สามารถอ้างอิง ตารางได้โดยตรง  โดยปรกติหากเราไม่ได้กำหนดค่าของ default database จะต้องอ้างอิงตารางด้วย fully-qualified <code class="docutils literal notranslate"><span class="pre">databaseName.tableName</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-- Set <span class="s2">&quot;southwind&quot;</span> as the default database so as to reference its table directly.
+default database ด้วยคำสั่ง  <code class="docutils literal"><span class="pre">USE</span> <span class="pre">databasename</span></code> ทำให้สามารถอ้างอิง ตารางได้โดยตรง  โดยปรกติหากเราไม่ได้กำหนดค่าของ default database จะต้องอ้างอิงตารางด้วย fully-qualified <code class="docutils literal"><span class="pre">databaseName.tableName</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>-- Set <span class="s2">&quot;southwind&quot;</span> as the default database so as to reference its table directly.
 mysql&gt; USE southwind<span class="p">;</span>
 Database changed
 
@@ -284,7 +284,7 @@ Empty <span class="nb">set</span> <span class="o">(</span><span class="m">0</spa
 </pre></div>
 </div>
 <p>สร้างตาราง ภายในฐานข้อมูล</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-- Create the table <span class="s2">&quot;products&quot;</span>. Read <span class="s2">&quot;explanations&quot;</span> below <span class="k">for</span> the column defintions
+<div class="highlight-bash"><div class="highlight"><pre><span></span>-- Create the table <span class="s2">&quot;products&quot;</span>. Read <span class="s2">&quot;explanations&quot;</span> below <span class="k">for</span> the column defintions
 mysql&gt; CREATE TABLE IF NOT EXISTS products <span class="o">(</span>
          productID    INT UNSIGNED  NOT NULL AUTO_INCREMENT,
          productCode  CHAR<span class="o">(</span><span class="m">3</span><span class="o">)</span>       NOT NULL DEFAULT <span class="s1">&#39;&#39;</span>,
