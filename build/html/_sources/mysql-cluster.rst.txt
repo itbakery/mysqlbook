@@ -6,6 +6,7 @@ Install Mysql cluster
 ::
 
     $ mkdir cluster
+    $ vagrant plugin install vagrant-vbguest
     $ vim Vagrantfile
 
 .. literalinclude:: _static/code/Vagrantfile-cluster
@@ -42,13 +43,8 @@ Install Mysql cluster
 
 ::
 
-    vi /etc/hosts
-
-    10.1.0.11 mysql-node1
-    10.1.0.12 mysql-node2
-    10.1.0.13 mysql-node3
-
     vi /etc/environment
+
     LANG=en_US.utf-8
     LC_ALL=en_US.utf-8
 
@@ -72,18 +68,35 @@ Install Mysql cluster
 ::
 
     yum update -y
+    yum repolist
 
 2.  ติดตั้ง package
 ::
 
     yum -y install galera-3 mysql-wsrep-5.7 rsync lsof policycoreutils-python firewalld
-    reboot
+
+::
+
+    systemctl start mysql
+
+    mysql_secure_installation
+    systemctl stop mysql
+
+หา Temporary password  ของ MySQl ทำในทุกๆ Node::
+
+    journalctl -u mysqld  >  mysqllog.txt
+    grep 'temporary password' mysqllog.txt
+
+    ...temporary password is generated for root@localhost: ``TftGvyres3=5``
+
+    mysql_secure_installation
+    (ตั้ง password ใหม่)
+    systemctl stop mysql
+
 
 3. เริ่มต้น service
 ::
 
-    systemctl enable mysqld
-    systemctl start mysqld
     systemctl enable firewalld
     systemctl start firewalld
 
@@ -103,7 +116,7 @@ Install Mysql cluster
 
     semanage port -a -t mysqld_port_t -p tcp 4567
     semanage port -a -t mysqld_port_t -p udp 4567
-    semanage port -a -t mysqld_port_t -p tcp 456
+    semanage port -a -t mysqld_port_t -p tcp 4568
     semanage port -a -t mysqld_port_t -p tcp 4444
     semanage permissive -a mysqld_t
 
@@ -165,10 +178,6 @@ Install Mysql cluster
 
     /usr/bin/mysqld_bootstrap
 
-9. Temporary password  ของ MySQl
-::
-
-    2018-02-17T09:26:48.024883Z 1 [Note] A temporary password is generated for root@localhost: oldfb7ed!j7X
 
 
 10. เปลี่ยน password
@@ -233,13 +242,40 @@ Install Mysql cluster
 
     Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
 
-::
+.. note::
 
-
-    journalctl -u mysql
+    journalctl -u mysqld
 
     (port 4567 is actively listening for any replication)
-    lsof -i:4567
+    ::
+        lsof -i:4567
 
     (port 3306 is actively listening for any MySQL connections.)
-    lsof -i:3306
+    ::
+
+        lsof -i:3306
+
+
+::
+
+    mysql -u root -p
+    mysql> SHOW STATUS LIKE 'wsrep_cluster_size';
+    +--------------------+-------+
+    | Variable_name      | Value |
+    +--------------------+-------+
+    | wsrep_cluster_size | 1     |
+    +--------------------+-------+
+    1 row in set (0.00 sec)
+
+    mysql -u root -p
+    mysql> SHOW STATUS LIKE 'wsrep_cluster_size';
+    +--------------------+-------+
+    | Variable_name      | Value |
+    +--------------------+-------+
+    | wsrep_cluster_size | 2     |
+    +--------------------+-------+
+    1 row in set (0.00 sec)
+
+    mysql> SHOW GLOBAL STATUS LIKE 'wsrep_%';
+
+    mysql> SHOW STATUS LIKE 'wsrep_cluster_%';

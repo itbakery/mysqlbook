@@ -1,0 +1,529 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Database Normalization &mdash; Mysql Tutorial 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Mysql Tutorial 1 documentation" href="index.html"/>
+        <link rel="next" title="Install Mysql installation on cenos 7" href="mysql.html"/>
+        <link rel="prev" title="Relational Database" href="relational.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Mysql Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Database Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">วัตถุประสงค์</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#normalization">1. Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-dependency">3 ชนิดของ Function dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-first-normal-form">4. 1NF -  First Normal Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-second-normal-form">5. 2NF -  Second Normal Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nf-third-normal-form">6. 3NF -  Third Normal Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bcnf-boyce-codd-normal-form">7. BCNF - Boyce-codd Normal Form</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vagrant.html">Vagrant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firewall.html">Firewall Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-windows.html">Install Mysql Server on windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mysql-workbench-win.html">Install MySQL Workbench on windows 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-mysql-command.html">Summary MySQL command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example1-sampledatabase.html">Example1: Sample Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example2-employee.html">Example2: Employee Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mysql-cluster.html">Install Mysql cluster</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Mysql Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Database Normalization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/normalization.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="database-normalization">
+<h1>Database Normalization<a class="headerlink" href="#database-normalization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>วัตถุประสงค์<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Normalization</li>
+<li>Function dependency (FD)</li>
+<li>ประเภทของ Function dependency</li>
+<li>1NF -  First Normal Form</li>
+<li>2NF -  Second Normal Form</li>
+<li>3NF -  Third Normal Form</li>
+<li>BCNF - Boyce-codd Normal Form</li>
+<li>4NF - Fourth Normal Form</li>
+<li>5NF - Fifth Normal Form</li>
+</ol>
+</div>
+<div class="section" id="normalization">
+<h2>1. Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h2>
+<p>&nbsp;Normalization &nbsp;คือวิธีการใช้ในการตรวจสอบและแก้ปัญหาทางด้านความซ้ำช้อนของข้อมูล และความผิดพลาดจากการเพิ่มหรือลบข้อมูล โดยการดำเนินการให้ข้อมูลในแต่ละ &nbsp;Relation &nbsp;&nbsp;อยู่ในหน่วยที่เล็กที่สุด ในความสัมพันธ์</p>
+<ul class="simple">
+<li>Relation schema</li>
+</ul>
+<p>ในความสำพันธ์หนึ่งๆ จะอธิบายโครงสร้างของ &nbsp;relation ได้จากชื่อของ relation &nbsp;และ attribute ต่าง ของ relation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>R ( A1, A2, … An)
+</pre></div>
+</div>
+<p>เช่น:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Student</span> <span class="p">(</span> <span class="n">Scode</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Surname</span><span class="p">,</span> <span class="n">Bithday</span><span class="p">,</span> <span class="n">Faculty</span><span class="p">)</span>
+<span class="n">Course</span> <span class="p">(</span> <span class="n">Ccode</span><span class="p">,</span> <span class="n">SubjName</span><span class="p">,</span> <span class="n">Credit</span><span class="p">,</span> <span class="n">Instructor</span><span class="p">,</span> <span class="n">Textbook</span><span class="p">)</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="20%" />
+<col width="22%" />
+<col width="9%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Scode</th>
+<th class="head">Name</th>
+<th class="head">Surname</th>
+<th class="head">Birthday</th>
+<th class="head">Faculty</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20101214</td>
+<td>John</td>
+<td>Harris</td>
+<td>14/5/1979</td>
+<td>Engineering</td>
+</tr>
+<tr class="row-odd"><td>56210121</td>
+<td>Paul</td>
+<td>Martin</td>
+<td>2/11/1982</td>
+<td>Management</td>
+</tr>
+<tr class="row-even"><td>4295412</td>
+<td>Lee</td>
+<td>Kevin</td>
+<td>1/3/1983</td>
+<td>Science</td>
+</tr>
+<tr class="row-odd"><td>20101239</td>
+<td>Jim</td>
+<td>Jackson</td>
+<td>21/7/1981</td>
+<td>Letter</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li>Function dependency</li>
+</ol>
+<p>Functional dependency (FD) คือความสัมพันธ์ระหว่าง attribute ใน Relation โดยมีลักษณะความสัมพันธ์คือ ข้อมูลของ attribute หนึ่ง (หรือกลุ่มหนึ่ง) ขึ้นอยู่กับค่าของ attribute หนึ่ง (หรือกลุ่มหนึ่ง) อย่างเป็นฟังก์ชัน</p>
+<p>attribute  X และ Y อยู่ใน relation R  ดังนั้น <code class="docutils literal"><span class="pre">X</span> <span class="pre">-&gt;</span> <span class="pre">Y</span></code>  อ่านว่า  Y ขึ้นตรงต่อ X อย่างเป็นฟังก์ชัน หรือ  X กำหนดค่า Y</p>
+<ul class="simple">
+<li>X คือ ตัวกำหนด หรือ Determinant attribute</li>
+<li>Y คือ Dependent attribute</li>
+</ul>
+<p>นิยาม:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">-&gt;</span> <span class="n">Y</span> <span class="n">ก็ต่อเมื่อ</span> <span class="n">ทุกค่าของ</span> <span class="n">X</span> <span class="n">ใน</span> <span class="n">R</span> <span class="n">สัมพันธ์กับค่าของ</span> <span class="n">Y</span> <span class="n">เพียงค่าเดียว</span> <span class="n">นั่นคือ</span> <span class="n">หากรู้ว่าค่า</span> <span class="n">X</span> <span class="n">เป็นอะไร</span> <span class="n">ก็จะระบุค่า</span> <span class="n">Y</span> <span class="n">ได้</span>
+</pre></div>
+</div>
+<p>เช่น:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SCode</span> <span class="o">-&gt;</span> <span class="n">SName</span><span class="p">,</span> <span class="n">Faculty</span><span class="p">,</span> <span class="n">Birthday</span>
+<span class="n">Birthday</span> <span class="o">-&gt;</span> <span class="n">Age</span>
+<span class="p">{</span> <span class="n">อำเภอ</span><span class="p">,</span> <span class="n">จังหวัด</span> <span class="p">}</span> <span class="o">-&gt;</span>  <span class="n">รหัสไปรษณีย์</span>
+<span class="n">รหัสไปรษณีย์</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">อำเภอ</span><span class="p">,</span> <span class="n">จังหวัด</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-dependency">
+<h2>3 ชนิดของ Function dependency<a class="headerlink" href="#function-dependency" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Trivial fucntion dependency</li>
+</ul>
+<p>นิยาม:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">-&gt;</span><span class="n">B</span> <span class="n">เป็น</span> <span class="n">trivial</span> <span class="n">function</span> <span class="n">dependency</span> <span class="n">ถ้า</span> <span class="n">B</span> <span class="n">เป็น</span> <span class="n">subset</span> <span class="n">ของ</span> <span class="n">A</span>
+</pre></div>
+</div>
+<p>เช่น:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">Student_id</span><span class="p">,</span><span class="n">Student_name</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">Student_id</span> <span class="n">เป็น</span> <span class="n">trivial</span> <span class="n">function</span> <span class="n">dependency</span> <span class="n">เนื่องจาก</span> <span class="n">Student_id</span> <span class="n">เป็น</span> <span class="n">subset</span> <span class="n">ใน</span> <span class="n">เซต</span> <span class="p">{</span><span class="n">Student_id</span><span class="p">,</span><span class="n">Student_name</span><span class="p">}</span>
+<span class="p">{</span><span class="n">emp_id</span><span class="p">,</span><span class="n">emp_name</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">emp_name</span>  <span class="p">(</span> <span class="n">emp_name</span> <span class="n">เป็น</span> <span class="n">subset</span> <span class="n">ใน</span> <span class="p">{</span><span class="n">emp_id</span><span class="p">,</span><span class="n">emp_name</span><span class="p">})</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Non-trival function dependency</li>
+</ul>
+<p>นิยาม:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">-&gt;</span><span class="n">B</span>  <span class="n">จะต้องเป็น</span> <span class="n">function</span> <span class="n">dependency</span>  <span class="n">ที่</span> <span class="n">B</span> <span class="n">ไม่อยู่ใน</span> <span class="n">subset</span> <span class="n">ของ</span> <span class="n">A</span>
+</pre></div>
+</div>
+<p>เช่น:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">emp_id</span> <span class="o">-&gt;</span> <span class="n">emp_name</span>  <span class="p">(</span> <span class="n">emp_name</span> <span class="n">ไม่ใช้</span> <span class="n">subset</span> <span class="n">ใน</span> <span class="p">{</span><span class="n">emp_id</span><span class="p">})</span>
+<span class="n">emp_id</span> <span class="o">-&gt;</span> <span class="n">emp_address</span>  <span class="p">(</span> <span class="n">emp_address</span> <span class="n">ไม่ใช้</span> <span class="n">subset</span> <span class="n">ใน</span> <span class="p">{</span><span class="n">emp_id</span><span class="p">})</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Multivalued dependency</li>
+</ul>
+<p>นิยาม:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">เกิดขึ้นเมือค่าของ</span> <span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">มี</span> <span class="n">dependency</span> <span class="n">value</span>  <span class="n">มากกว่า</span> <span class="n">ค่าเดียวในตาราง</span>
+</pre></div>
+</div>
+<p>เช่น:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">โรงงานจักรยาน</span> <span class="n">ผลิตจักรยานสี</span> <span class="n">black</span><span class="p">,</span><span class="n">white</span> <span class="n">ในแต่ละ</span> <span class="n">model</span>
+<span class="n">bike_model</span> <span class="o">-&gt;&gt;</span> <span class="n">manuf_year</span>
+<span class="n">bike_model</span> <span class="o">-&gt;&gt;</span> <span class="n">color</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="39%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">bike_model</th>
+<th class="head">manuf_year</th>
+<th class="head">color</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>M1001</td>
+<td>2007</td>
+<td>Black</td>
+</tr>
+<tr class="row-odd"><td>M1001</td>
+<td>2007</td>
+<td>Red</td>
+</tr>
+<tr class="row-even"><td>M2012</td>
+<td>2008</td>
+<td>Black</td>
+</tr>
+<tr class="row-odd"><td>M2012</td>
+<td>2008</td>
+<td>Red</td>
+</tr>
+<tr class="row-even"><td>M2222</td>
+<td>2009</td>
+<td>Black</td>
+</tr>
+<tr class="row-odd"><td>M2222</td>
+<td>2009</td>
+<td>Red</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="nf-first-normal-form">
+<h2>4. 1NF -  First Normal Form<a class="headerlink" href="#nf-first-normal-form" title="Permalink to this headline">¶</a></h2>
+<p>ลักษณะของ &nbsp;1NF  ค่าในตารางจะต้องมีลักษณะ เป็น atomic มีค่าเดียวในแต่ละ&nbsp; attribute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Course</th>
+<th class="head">Content</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Programming</td>
+<td>Java, C++</td>
+</tr>
+<tr class="row-odd"><td>Web</td>
+<td>HTML, PHP, ASP</td>
+</tr>
+</tbody>
+</table>
+<p>จัดตารางใหม่</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="59%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Course</th>
+<th class="head">Content</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Programming</td>
+<td>Java</td>
+</tr>
+<tr class="row-odd"><td>Programming</td>
+<td>c++</td>
+</tr>
+<tr class="row-even"><td>Web</td>
+<td>HTML</td>
+</tr>
+<tr class="row-odd"><td>Web</td>
+<td>PHP</td>
+</tr>
+<tr class="row-even"><td>Web</td>
+<td>ASP</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nf-second-normal-form">
+<h2>5. 2NF -  Second Normal Form<a class="headerlink" href="#nf-second-normal-form" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Prime attribute จำแนกค่าของ attribute ว่าค่าใดเป็น  Candidate-key ถือเป็น attribute หลัก (Prime attribute)</li>
+<li>Non-prime attribute เป็นค่า attribute ที่ไม่ใช่ ค่า prime attribute</li>
+</ul>
+<img alt="_images/student_project1.png" src="_images/student_project1.png" />
+<p>แยกตารางตามความสัมพันธ์ ของ prime attribute ออกมาได้ดังนี้</p>
+<img alt="_images/student_project2.png" src="_images/student_project2.png" />
+</div>
+<div class="section" id="nf-third-normal-form">
+<h2>6. 3NF -  Third Normal Form<a class="headerlink" href="#nf-third-normal-form" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>3NF จะต้องอยู่ในรูปของ&nbsp;2NF ก่อน การพิจารณาใน 3NF จะพิจารณาส่วนของ non-prime attribute มีความสำพันธ์ แบบ transitive dependency</dt>
+<dd><ul class="first last">
+<li>Std_id -&gt; City,  city -&gt; zip ดังนั้น &nbsp; Std_id สามารถระบุ Zip  ได้โดยผ่าน attribute City</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="_images/student_project3.png" src="_images/student_project3.png" />
+<p>ทำให้สามารถแยกย่อยตารางได้ จาก transitive dependency</p>
+<img alt="_images/student_project4.png" src="_images/student_project4.png" />
+</div>
+<div class="section" id="bcnf-boyce-codd-normal-form">
+<h2>7. BCNF - Boyce-codd Normal Form<a class="headerlink" href="#bcnf-boyce-codd-normal-form" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">เป็นส่วนขยายของ 3NF &nbsp;โดยมีนิยามว่า:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>สำหรับ non-trival fuctional dependency ใดๆ x -&gt; y  แล้ว x จะต้องมีคุณสมบัติของ Super key
+
+::
+
+    Stu_ID → Stu_Name, Zip
+    Zip → City
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mysql.html" class="btn btn-neutral float-right" title="Install Mysql installation on cenos 7" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="relational.html" class="btn btn-neutral" title="Relational Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, sawangpong@itbakery.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

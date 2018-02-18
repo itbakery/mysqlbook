@@ -98,6 +98,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="relational.html">Relational Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="normalization.html">Database Normalization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mysql.html">Install Mysql installation  on cenos 7</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgres.html">Install PostgreSQL 10 on CentOS 7</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgres-shell.html">PostgreSQL Commands</a></li>
@@ -179,6 +180,7 @@
 <h1>Install Mysql cluster<a class="headerlink" href="#install-mysql-cluster" title="Permalink to this headline">¶</a></h1>
 <p>เรียนรู้การติดตั้ง mysql-cluster โดยการติดตั้ง vagrantfile ด้านล่างนี้</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ mkdir cluster
+$ vagrant plugin install vagrant-vbguest
 $ vim Vagrantfile
 </pre></div>
 </div>
@@ -196,28 +198,32 @@ Vagrant.configure(2) do |config|
         config.timezone.value = &quot;Asia/Bangkok&quot;
     end
     config.vm.define &quot;node1&quot; do |node|
-        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.box = &quot;centos/7&quot;
         node.vm.hostname = &quot;mysql-node1&quot;
         node.vm.network :private_network, ip: &quot;10.1.0.11&quot;
     end
      
     config.vm.define &quot;node2&quot; do |node|
-        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.box = &quot;centos/7&quot;
         node.vm.hostname = &quot;mysql-node2&quot;
         node.vm.network :private_network, ip: &quot;10.1.0.12&quot;
     end
      
     config.vm.define &quot;node3&quot; do |node|
-        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.box = &quot;centos/7&quot;
         node.vm.hostname = &quot;mysql-node3&quot;
         node.vm.network :private_network, ip: &quot;10.1.0.13&quot;
     end
      
     config.vm.define &quot;web&quot; do |node|
-        node.vm.box = &quot;bento/centos-7.3&quot;
+        node.vm.box = &quot;centos/7&quot;
         node.vm.hostname = &quot;mysql-web&quot;
         node.vm.network :private_network, ip: &quot;10.1.0.10&quot;
     end
+    config.vm.provider &quot;virtualbox&quot; do |v|
+        v.memory = 2048
+        v.cpus = 2
+    end 
 end
 </pre></div>
 </div>
@@ -246,13 +252,8 @@ $ vagrant ssh node3 -c &quot;hostname -s&quot;
 </pre></div>
 </div>
 <p>&nbsp;ให้ทำการข้างต้นใน node2,node3</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
 
-<span class="mf">10.1</span><span class="o">.</span><span class="mf">0.11</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node1</span>
-<span class="mf">10.1</span><span class="o">.</span><span class="mf">0.12</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node2</span>
-<span class="mf">10.1</span><span class="o">.</span><span class="mf">0.13</span> <span class="n">mysql</span><span class="o">-</span><span class="n">node3</span>
-
-<span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">environment</span>
 <span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 <span class="n">LC_ALL</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
 </pre></div>
@@ -273,17 +274,32 @@ $ vagrant ssh node3 -c &quot;hostname -s&quot;
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">update</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">yum</span> <span class="n">repolist</span>
 </pre></div>
 </div>
 <p>2. &nbsp;ติดตั้ง package</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">galera</span><span class="o">-</span><span class="mi">3</span> <span class="n">mysql</span><span class="o">-</span><span class="n">wsrep</span><span class="o">-</span><span class="mf">5.7</span> <span class="n">rsync</span> <span class="n">lsof</span> <span class="n">policycoreutils</span><span class="o">-</span><span class="n">python</span> <span class="n">firewalld</span>
-<span class="n">reboot</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">start</span> <span class="n">mysql</span>
+
+<span class="n">mysql_secure_installation</span>
+<span class="n">systemctl</span> <span class="n">stop</span> <span class="n">mysql</span>
+</pre></div>
+</div>
+<p>หา Temporary password &nbsp;ของ MySQl ทำในทุกๆ Node:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>journalctl -u mysqld  &gt;  mysqllog.txt
+grep &#39;temporary password&#39; mysqllog.txt
+
+...temporary password is generated for root@localhost: ``TftGvyres3=5``
+
+mysql_secure_installation
+(ตั้ง password ใหม่)
+systemctl stop mysql
 </pre></div>
 </div>
 <p>3. เริ่มต้น service</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">enable</span> <span class="n">mysqld</span>
-<span class="n">systemctl</span> <span class="n">start</span> <span class="n">mysqld</span>
-<span class="n">systemctl</span> <span class="n">enable</span> <span class="n">firewalld</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">enable</span> <span class="n">firewalld</span>
 <span class="n">systemctl</span> <span class="n">start</span> <span class="n">firewalld</span>
 </pre></div>
 </div>
@@ -300,7 +316,7 @@ $ vagrant ssh node3 -c &quot;hostname -s&quot;
 <p>5. ตั้งค่า SE Linux</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">4567</span>
 <span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="mi">4567</span>
-<span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">456</span>
+<span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">4568</span>
 <span class="n">semanage</span> <span class="n">port</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">t</span> <span class="n">mysqld_port_t</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="mi">4444</span>
 <span class="n">semanage</span> <span class="n">permissive</span> <span class="o">-</span><span class="n">a</span> <span class="n">mysqld_t</span>
 </pre></div>
@@ -377,10 +393,6 @@ pid-file<span class="o">=</span>/var/run/mysqld/mysqld.pid
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mysqld_bootstrap</span>
 </pre></div>
 </div>
-<p>9. Temporary password &nbsp;ของ MySQl</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>2018-02-17T09:26:48.024883Z 1 [Note] A temporary password is generated for root@localhost: oldfb7ed!j7X
-</pre></div>
-</div>
 <ol class="arabic simple" start="10">
 <li>เปลี่ยน password</li>
 </ol>
@@ -439,13 +451,39 @@ made so far will take effect immediately.
 Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">journalctl</span> <span class="o">-</span><span class="n">u</span> <span class="n">mysql</span>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>journalctl -u mysqld</p>
+<p>(port 4567 is actively listening for any replication)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lsof</span> <span class="o">-</span><span class="n">i</span><span class="p">:</span><span class="mi">4567</span>
+</pre></div>
+</div>
+<p>(port 3306 is actively listening for any MySQL connections.)</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="n">lsof</span> <span class="o">-</span><span class="n">i</span><span class="p">:</span><span class="mi">3306</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="o">-</span><span class="n">p</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="n">SHOW</span> <span class="n">STATUS</span> <span class="n">LIKE</span> <span class="s1">&#39;wsrep_cluster_size&#39;</span><span class="p">;</span>
+<span class="o">+--------------------+-------+</span>
+<span class="o">|</span> <span class="n">Variable_name</span>      <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+--------------------+-------+</span>
+<span class="o">|</span> <span class="n">wsrep_cluster_size</span> <span class="o">|</span> <span class="mi">1</span>     <span class="o">|</span>
+<span class="o">+--------------------+-------+</span>
+<span class="mi">1</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">set</span> <span class="p">(</span><span class="mf">0.00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">port</span> <span class="mi">4567</span> <span class="ow">is</span> <span class="n">actively</span> <span class="n">listening</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">replication</span><span class="p">)</span>
-<span class="n">lsof</span> <span class="o">-</span><span class="n">i</span><span class="p">:</span><span class="mi">4567</span>
+<span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="o">-</span><span class="n">p</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="n">SHOW</span> <span class="n">STATUS</span> <span class="n">LIKE</span> <span class="s1">&#39;wsrep_cluster_size&#39;</span><span class="p">;</span>
+<span class="o">+--------------------+-------+</span>
+<span class="o">|</span> <span class="n">Variable_name</span>      <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+--------------------+-------+</span>
+<span class="o">|</span> <span class="n">wsrep_cluster_size</span> <span class="o">|</span> <span class="mi">2</span>     <span class="o">|</span>
+<span class="o">+--------------------+-------+</span>
+<span class="mi">1</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">set</span> <span class="p">(</span><span class="mf">0.00</span> <span class="n">sec</span><span class="p">)</span>
 
-<span class="p">(</span><span class="n">port</span> <span class="mi">3306</span> <span class="ow">is</span> <span class="n">actively</span> <span class="n">listening</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">MySQL</span> <span class="n">connections</span><span class="o">.</span><span class="p">)</span>
-<span class="n">lsof</span> <span class="o">-</span><span class="n">i</span><span class="p">:</span><span class="mi">3306</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="n">SHOW</span> <span class="n">GLOBAL</span> <span class="n">STATUS</span> <span class="n">LIKE</span> <span class="s1">&#39;wsrep_%&#39;</span><span class="p">;</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="n">SHOW</span> <span class="n">STATUS</span> <span class="n">LIKE</span> <span class="s1">&#39;wsrep_cluster_%&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>

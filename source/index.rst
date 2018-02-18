@@ -11,6 +11,7 @@ Welcome to Mysql Tutorial's documentation!
    :caption: Contents:
 
    relational
+   normalization
    mysql
    postgres
    postgres-shell
